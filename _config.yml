@@ -5,7 +5,7 @@ header-img: img/header.jpg
 email: fangzhh6@mail2.sysu.edu.cn
 description: "Sun Yat-Sen University, School of Computer and Science Engineering."
 keyword: "Birdie, Birdie-Go, Blog, computer and science, acm"
-url: "http://bridie-go.github.io"
+url: "http://birdie-go.github.io"
 baseurl: ""
 github_repo: "https://github.com/birdie-go/birdie-go.github.io.git"
 
@@ -18,12 +18,12 @@ sidebar-avatar: /img/me.jpg      # use absolute URL, seeing it's used in both `/
 
 # SNS settings
 RSS: false
-# weibo_username:     Bridie-Go
-# zhihu_username:     Bridie-Go
-# github_username:    Bridie-Go
+# weibo_username:     Birdie-Go
+# zhihu_username:     Birdie-Go
+# github_username:    Birdie-Go
 # facebook_username:  baiying.qiu.7
 # jianshu_username:   e71990ada2fd
-# twitter_username:   Bridie-Go
+# twitter_username:   Birdie-Go
 
 
 
@@ -57,16 +57,16 @@ kramdown:
 
 # 评论系统
 # Disqus（https://disqus.com/）
-# disqus_username: Bridie-Go
+# disqus_username: Birdie-Go
 
 # Gitalk
 gitalk:
   enable: true    #是否开启Gitalk评论
   clientID: f2c84e7629bb1446c1a4                            #生成的clientID
   clientSecret: ca6d6139d1e1b8c43f8b2e19492ddcac8b322d0d    #生成的clientSecret
-  repo: Bridie-Go.github.io    #仓库名称
-  owner: Bridie-Go    #github用户名
-  admin: Bridie-Go
+  repo: Birdie-Go.github.io    #仓库名称
+  owner: Birdie-Go    #github用户名
+  admin: Birdie-Go
   distractionFreeMode: true #是否启用类似FB的阴影遮罩
 
 
@@ -78,7 +78,7 @@ ba_track_id: b50bf2b12b5338a1845e33832976fd68
 
 # Google Analytics
 ga_track_id: 'UA-90855596-1'            # Format: UA-xxxxxx-xx
-ga_domain: Bridie-Go.auto               # 默认的是 auto, 这里我是自定义了的域名，你如果没有自己的域名，需要改成auto
+ga_domain: Birdie-Go.auto               # 默认的是 auto, 这里我是自定义了的域名，你如果没有自己的域名，需要改成auto
 
 
 
