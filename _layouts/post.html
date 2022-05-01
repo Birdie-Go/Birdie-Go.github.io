@@ -82,14 +82,10 @@ layout: default
                 </ul>
 
 
-                <!--GitalkËØÑË?∫start  -->
                 {% if site.gitalk.enable %}
-                <!-- ÂºïÂÖ•GitalkËØÑË?∫Êèí‰ª?  -->
                 <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
                 <script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
                 <div id="gitalk-container"></div>
-                <!-- ÂºïÂÖ•‰∏Ä‰∏?Áîü‰∫ßmd5ÁöÑjsÔºåÁî®‰∫éÂ?πidÂÄºËøõË°åÂ?ÑÁêÜÔºåÈò≤Ê≠¢ÂÖ∂ËøáÈïø -->
-                <!-- Thank DF:https://github.com/NSDingFan/NSDingFan.github.io/issues/3#issuecomment-407496538 -->
                 <script src="{{ site.baseurl }}/js/md5.min.js"></script>
                 <script type="text/javascript">
                     var gitalk = new Gitalk({
@@ -107,11 +103,9 @@ layout: default
                 <!-- Gitalk end -->
 
                 {% if site.disqus_username %}
-                <!-- disqus ËØÑË?∫Ê?? start -->
                 <div class="comment">
                     <div id="disqus_thread" class="disqus-thread"></div>
                 </div>
-                <!-- disqus ËØÑË?∫Ê?? end -->
                 {% endif %}
 
             </div>  
@@ -173,7 +167,6 @@ layout: default
 
 
 {% if site.disqus_username %}
-<!-- disqus ÂÖ?ÂÖ±JS‰ª£Á†Å start (‰∏Ä‰∏?ÁΩëÈ°µÂè?ÈúÄÊèíÂÖ•‰∏ÄÊ¨?) -->
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "{{site.disqus_username}}";
@@ -186,7 +179,6 @@ layout: default
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
 </script>
-<!-- disqus ÂÖ?ÂÖ±JS‰ª£Á†Å end -->
 {% endif %}
 
 
@@ -205,7 +197,7 @@ layout: default
 <!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
 <script>
     async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
-        // BY Fix:ÂéªÈô§Ê†áÈ?òÂâçÁöÑ‚Ä?#‚Ä? issues:<https://github.com/qiubaiying/qiubaiying.github.io/issues/137>
+        // BY Fix: issues:<https://github.com/qiubaiying/qiubaiying.github.io/issues/137>
         // anchors.options = {
         //   visible: 'always',
         //   placement: 'right',
