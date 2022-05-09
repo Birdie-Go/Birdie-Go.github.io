@@ -11,18 +11,10 @@ tags:
     - 编译原理
 ---
 
-<center><b><font size = "7">编译原理实验
+## 编译原理实验
 
 
-
-<center><b><font size = "5">基于表达式的计算器 EXPREVAL
-
-<center><b><font size = "5">设计文档
-
-
-
-
----
+## 基于表达式的计算器 EXPREVAL
 
 
 ***实验描述、计算器规格说明、实验软装置见 Lab04-ExprEval.pdf**

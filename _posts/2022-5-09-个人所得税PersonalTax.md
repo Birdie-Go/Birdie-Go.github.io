@@ -11,16 +11,12 @@ tags:
 ---
 
 
-<center><b><font size = "7">编译原理预备实验
+## 编译原理预备实验
 
 
-
-<center><b><font size = "5">计算个人所得税 PersonalTax
-
-<center><b><font size = "5">设计文档
+## 计算个人所得税 PersonalTax
 
 
----
 
 > 事实上我觉得我写的并不像软件工程
 
