@@ -310,51 +310,9 @@ java：java 17.0.2
 
 ### 6 附件说明
 
-目录如下：
-
-```
-D:.
-│  build.bat
-│  check.cpp
-│  check.exe
-│  README.txt
-│  tax.bat
-│  设计文档.pdf
-│
-├─bin
-│  │  check.exe
-│  └─tax
-│          Calcator.class
-│          Presentation.class
-│          Row.class
-│          StartPoint.class
-│          Tax.class
-│
-├─doc
-│  ├─legal
-│  ├─resources
-│  └─script-dir
-│      └─images
-│
-├─src
-│      Calcator.java
-│      Presentation.java
-│      Row.java
-│      StartPoint.java
-│      Tax.java
-│
-└─testData
-    │  cnt.txt
-    │  generator.cpp
-    │  generator.exe
-    ├─ans
-    ├─in
-    └─out
-```
-
 1. 提供了运行代码的脚本：`work.bat`，运行后可以直接看到用户需要的UI界面。**该脚本需要放置在源代码的同一目录下，在Windows环境下使用。**
 2. 提供了测试数据，是在源代码目录下以文件夹`data`的形式存在，`\data\inx.txt`表示测试数据的输入，`\data\ansx.txt`表示该测试数据的正确结果。
 3. 提供了回归测试的自动化测试脚本`check.exe`，该脚本采用c++编写，**在Windows环境下使用**。
 4. 提供了`doc`文件，内部包含生成的`javadoc`。
 
-> github: 再说
+> github: https://github.com/Birdie-Go/PersonalTax

@@ -464,4 +464,4 @@ D:.
 
 具体应用说明见EXPREVAL文档。
 
-> github: 再说
+> github: https://github.com/Birdie-Go/EXPREVAL
