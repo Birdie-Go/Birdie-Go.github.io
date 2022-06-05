@@ -23,7 +23,7 @@ tags:
 
 需要安装的东西有：
 
-- JDK：[Java Downloads | Oracle](https://www.oracle.com/java/technologies/downloads/)
+- JDK：[Java Downloads Oracle](https://www.oracle.com/java/technologies/downloads/)
 
   我个人装的是 JDK17，都没有太大的问题，选择一个稳定的版本安装即可。jsp 其实就是 java，当然要装 jdk。
 
