@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      基于表达式的计算器EXPREVAL
-subtitle:   编译原理 软件工程
+subtitle:   在编译原理课上熟悉软件工程
 date:       2022/5/09
 author:     Birdie
 header-img: img/post_header.jpg
