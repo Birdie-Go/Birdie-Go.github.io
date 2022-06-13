@@ -81,9 +81,7 @@ tags:
 
 **首先要确认，后台没有运行刚刚打开的 `startup.bat`，确保要关掉，不放心就运行 `shutdown.bat`。**
 
-左下角有一个 MAVEN 栏，点 + 号。
-
-<img src="http://tiebapic.baidu.com/forum/w%3D580/sign=59ec0443dffcc3ceb4c0c93ba244d6b7/eb6e8e12b07eca807bc4b186862397dda044830a.jpg?tbpicau=2022-06-06-05_fedca3d67265809f35e55315476c6548" alt="img" style="zoom: 67%;" />
+左下角有一个 MAVEN 栏，点 + 号。或者右键选择“从Maven原型创建新项目”。
 
 然后顶端会弹出框框，输入 webapp，选 maven-archetype-webapp。
 
