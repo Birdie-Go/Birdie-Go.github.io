@@ -9,6 +9,7 @@ catalog: true
 tags:
     - 论文阅读
     - 组合优化
+    - NIPS
 ---
 
 
@@ -43,9 +44,11 @@ BQ-NCO:高效神经组合优化的双模拟分法（Bisimulation Quotienting不�
 ## CO as a MDP
 
 定义了一个COP为，
+
 $$
 \min_{x\in X}f(x)
 $$
+
 $X$是有限非空可行解，$f$是目标函数。
 
 ### 解空间
@@ -58,6 +61,7 @@ $X$是有限非空可行解，$f$是目标函数。
 - $\mathcal{Z}\sub\mathcal{X}$表示一步解的集合
 
 $\mathcal{X}$的任何元素都有有限正数的阶跃分解:
+
 $$
 \forall x\in{\mathcal X},0<|\{z_{1:n}\in{\mathcal Z}^{n}:x=z_{1}\circ\cdots\circ z_{n}\}|<\infty.
 $$
@@ -72,7 +76,7 @@ $$
 
 - 转移：
 
-  ![image-20240116152045192]({{site.url}}/img/image-20240116152045192.png)
+  ![image-20240116152045192]({{site.url}}/img/2024-1-16-NIPS23-BQ-NCO-Bisimulation-Quotienting-for-Efficient-Neural-Combinatorial-Optimization/image-20240116152045192.png)
 
   箭头上方表示动作，箭头下方表示奖励
 
@@ -96,7 +100,7 @@ $\mathcal{F}_{\mathcal{X}}$为$(f,X)$实例的集合。
 
 因此，作者构造了一个规约算子
 
-![image-20240116155011511]({{site.url}}/img/image-20240116155011511.png)
+![image-20240116155011511]({{site.url}}/img/2024-1-16-NIPS23-BQ-NCO-Bisimulation-Quotienting-for-Efficient-Neural-Combinatorial-Optimization/image-20240116155011511.png)
 
 事实上，$(f*y,X*y)$是给定部分解$y$后的尾部子问题。在TSP中，相当于给定了一个前缀解$y$，$y$的最后一个节点是$e$，尾部子问题相当于找到从$e$开始到仓库的一条路径。这样使得，只要子问题的尾部是$e$，且未访问的节点集合是一样的，那么问题就是对称的。
 
@@ -110,7 +114,7 @@ $\mathcal{F}_{\mathcal{X}}$为$(f,X)$实例的集合。
 
 - 转移
 
-  ![image-20240116164815272]({{site.url}}/img/image-20240116164815272.png)
+  ![image-20240116164815272]({{site.url}}/img/2024-1-16-NIPS23-BQ-NCO-Bisimulation-Quotienting-for-Efficient-Neural-Combinatorial-Optimization/image-20240116164815272.png)
 
 映射$\Phi_{(f,X)}{:}\bar{X}\mapsto\mathcal{F}_{\mathcal{X}}$是$\mathcal{M}$和$\mathcal{M}_{(f,X)}$的bisimulation（应该是叫做双模拟）。
 
@@ -122,7 +126,7 @@ $\mathcal{F}_{\mathcal{X}}$为$(f,X)$实例的集合。
 
 虽然直接和BQ-MDP在解决其相关COP方面是等同的，但它们的实际解释导致了重大差异。在直接MDP中，单独学习每个特定于实例的MDP是没有意义的。相反，学习基于输入实例的通用MDP，类似于目标条件强化学习。一个典型的策略模型架构由一个编码器和一个解码器组成，编码器负责计算输入实例的嵌入，解码器采用实例嵌入和当前的部分解决方案来计算下一个动作(图1左)，例如注意力模型或PointerNetworks。在轨迹的rollout中，编码器只需要调用一次，因为实例在整个rollout过程中不会更改。对于BQ-MDP，整个解空间只学习了一个无条件的MDP。该模型可以更简单，因为编码器和解码器之间的区别消失了(图1右)。另一方面，在rollout的每一步都必须将整个模型应用到一个新的输入实例。
 
-![image-20240116170643808]({{site.url}}/img/image-20240116170643808.png)
+![image-20240116170643808]({{site.url}}/img/2024-1-16-NIPS23-BQ-NCO-Bisimulation-Quotienting-for-Efficient-Neural-Combinatorial-Optimization/image-20240116170643808.png)
 
 ### 实例参数化和递归
 
@@ -136,7 +140,7 @@ $\mathcal{F}_{\mathcal{X}}$为$(f,X)$实例的集合。
 
 #### 网络架构
 
-![image-20240116172000215]({{site.url}}/img/image-20240116172000215.png)
+![image-20240116172000215]({{site.url}}/img/2024-1-16-NIPS23-BQ-NCO-Bisimulation-Quotienting-for-Efficient-Neural-Combinatorial-Optimization/image-20240116172000215.png)
 
 左侧是TSP，右侧是非对称TSP，$r_i$表示节点的标识嵌入。
 
@@ -189,11 +193,11 @@ TSP的解来自Concorde求解器，ATSP和CVRP是LKH，op是EA4OP启发式，数
 
 #### 结果
 
-![image-20240116174653330]({{site.url}}/img/image-20240116174653330.png)
+![image-20240116174653330]({{site.url}}/img/2024-1-16-NIPS23-BQ-NCO-Bisimulation-Quotienting-for-Efficient-Neural-Combinatorial-Optimization/image-20240116174653330.png)
 
-![image-20240116175106824]({{site.url}}/img/image-20240116175106824.png)
+![image-20240116175106824]({{site.url}}/img/2024-1-16-NIPS23-BQ-NCO-Bisimulation-Quotienting-for-Efficient-Neural-Combinatorial-Optimization/image-20240116175106824.png)
 
-![image-20240116175122274]({{site.url}}/img/image-20240116175122274.png)
+![image-20240116175122274]({{site.url}}/img/2024-1-16-NIPS23-BQ-NCO-Bisimulation-Quotienting-for-Efficient-Neural-Combinatorial-Optimization/image-20240116175122274.png)
 
 泛化性能很好，运行时间尚可。
 
