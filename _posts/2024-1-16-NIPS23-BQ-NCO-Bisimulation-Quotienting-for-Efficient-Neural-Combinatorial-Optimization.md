@@ -49,18 +49,18 @@ $$
 \min_{x\in X}f(x)
 $$
 
-$X$是有限非空可行解，$f$是目标函数。
+$X$ 是有限非空可行解，$f$ 是目标函数。
 
 ### 解空间
 
-解空间定义为$(\mathcal{X},\circ,\epsilon,\mathcal{Z})$
+解空间定义为 $(\mathcal{X},\circ,\epsilon,\mathcal{Z})$
 
-- $\mathcal{X}$是所有部分解的集合
-- $\circ$表示一种运算，$x\circ y$表示部分解$x$的后面拼接部分解$y$
-- $\epsilon$表示空解
-- $\mathcal{Z}\sub\mathcal{X}$表示一步解的集合
+- $\mathcal{X}$ 是所有部分解的集合
+- $\circ$ 表示一种运算，$x\circ y$ 表示部分解 $x$ 的后面拼接部分解 $y$
+- $\epsilon$ 表示空解
+- $\mathcal{Z}\sub\mathcal{X}$ 表示一步解的集合
 
-$\mathcal{X}$的任何元素都有有限正数的阶跃分解:
+$\mathcal{X}$ 的任何元素都有有限正数的阶跃分解:
 
 $$
 \forall x\in{\mathcal X},0<|\{z_{1:n}\in{\mathcal Z}^{n}:x=z_{1}\circ\cdots\circ z_{n}\}|<\infty.
@@ -68,7 +68,7 @@ $$
 
 ### 直接MDP
 
-直接MDP$\mathcal{M}_{(f,X)}$，
+直接MDP $\mathcal{M}_{(f,X)}$，
 
 - state space：$\bar{X}=\{x{\in}{\mathcal X}:\exists y{\in}{\mathcal X},x{\circ}y{\in}X\}$
 
@@ -80,7 +80,7 @@ $$
 
   箭头上方表示动作，箭头下方表示奖励
 
-$\mathcal{F}_{\mathcal{X}}$为$(f,X)$实例的集合。
+$\mathcal{F}_{\mathcal{X}}$ 为 $(f,X)$ 实例的集合。
 
 直接MDP满足三个性质：
 
@@ -102,7 +102,7 @@ $\mathcal{F}_{\mathcal{X}}$为$(f,X)$实例的集合。
 
 ![image-20240116155011511]({{site.url}}/img/2024-1-16-NIPS23-BQ-NCO-Bisimulation-Quotienting-for-Efficient-Neural-Combinatorial-Optimization/image-20240116155011511.png)
 
-事实上，$(f*y,X*y)$是给定部分解$y$后的尾部子问题。在TSP中，相当于给定了一个前缀解$y$，$y$的最后一个节点是$e$，尾部子问题相当于找到从$e$开始到仓库的一条路径。这样使得，只要子问题的尾部是$e$，且未访问的节点集合是一样的，那么问题就是对称的。
+事实上，$(f\ast y,X\ast y)$ 是给定部分解 $y$ 后的尾部子问题。在TSP中，相当于给定了一个前缀解$y$，$y$的最后一个节点是$e$，尾部子问题相当于找到从$e$开始到仓库的一条路径。这样使得，只要子问题的尾部是$e$，且未访问的节点集合是一样的，那么问题就是对称的。
 
 ### Bisimulation Quotiented MDP
 
@@ -116,9 +116,11 @@ $\mathcal{F}_{\mathcal{X}}$为$(f,X)$实例的集合。
 
   ![image-20240116164815272]({{site.url}}/img/2024-1-16-NIPS23-BQ-NCO-Bisimulation-Quotienting-for-Efficient-Neural-Combinatorial-Optimization/image-20240116164815272.png)
 
-映射$\Phi_{(f,X)}{:}\bar{X}\mapsto\mathcal{F}_{\mathcal{X}}$是$\mathcal{M}$和$\mathcal{M}_{(f,X)}$的bisimulation（应该是叫做双模拟）。
+映射
+$\Phi_{(f,X)}{:}\bar{X}\mapsto\mathcal{F}_{\mathcal{X}}$ 是 $\mathcal{M}$ 和 $\mathcal{M}_{(f,X)}$
+的bisimulation（应该是叫做双模拟）。
 
-形式上，$\mathcal{M}$通过双模拟与直接MDP的商同构，因此称为双模拟商(BQ-)MDP（Bisimulation Quotiented (BQ-)MDP）。
+形式上，$\mathcal{M}$ 通过双模拟与直接MDP的商同构，因此称为双模拟商(BQ-)MDP（Bisimulation Quotiented (BQ-)MDP）。
 
 作者证明了BQ-MDP的完备性。
 
@@ -130,7 +132,7 @@ $\mathcal{F}_{\mathcal{X}}$为$(f,X)$实例的集合。
 
 ### 实例参数化和递归
 
-为了实现BQ-MDP，一个关键要求是$(f*y,X*y)$可以在与$(f, X)$相同的参数空间中表示。事实上，对于满足尾部递归属性的COP来说就是这样：在对实例应用了许多构造步骤之后，剩余的尾部子问题本身就是原始COP的一个实例。这是CO中一个非常常见的性质，特别是包括动态规划的最优性原则：所有适合动态规划的问题都满足尾递归性质。对于这些尾递归cop，双模拟只是将部分解映射到它所引起的尾子问题实例。
+为了实现BQ-MDP，一个关键要求是 $(f*y,X*y)$ 可以在与 $(f, X)$ 相同的参数空间中表示。事实上，对于满足尾部递归属性的COP来说就是这样：在对实例应用了许多构造步骤之后，剩余的尾部子问题本身就是原始COP的一个实例。这是CO中一个非常常见的性质，特别是包括动态规划的最优性原则：所有适合动态规划的问题都满足尾递归性质。对于这些尾递归cop，双模拟只是将部分解映射到它所引起的尾子问题实例。
 
 作者举例了背包问题和path-TSP（最短路径问题）。
 
@@ -142,7 +144,7 @@ $\mathcal{F}_{\mathcal{X}}$为$(f,X)$实例的集合。
 
 ![image-20240116172000215]({{site.url}}/img/2024-1-16-NIPS23-BQ-NCO-Bisimulation-Quotienting-for-Efficient-Neural-Combinatorial-Optimization/image-20240116172000215.png)
 
-左侧是TSP，右侧是非对称TSP，$r_i$表示节点的标识嵌入。
+左侧是TSP，右侧是非对称TSP，$r_i$ 表示节点的标识嵌入。
 
 #### 轨迹生成
 
@@ -158,7 +160,7 @@ $\mathcal{F}_{\mathcal{X}}$为$(f,X)$实例的集合。
 
 #### 复杂度
 
-对于规模为$N$的问题，模型的复杂度是$O(N^3)$，使用的transformer的复杂度是$O(N^2)$。复杂度的瓶颈在Transformer。
+对于规模为 $N$ 的问题，模型的复杂度是 $O(N^3)$，使用的transformer的复杂度是 $O(N^2)$。复杂度的瓶颈在Transformer。
 
 
 
