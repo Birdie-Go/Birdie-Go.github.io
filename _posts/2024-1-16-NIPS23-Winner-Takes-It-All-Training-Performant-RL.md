@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Winner Takes It All: Training Performant RL Populations for Combinatorial Optimization
+title:      Winner Takes It All-Training Performant RL Populations for Combinatorial Optimization
 subtitle:   NIPS23
 date:       2024/1/16
 author:     Birdie
