@@ -117,8 +117,12 @@ $\mathcal{F}_{\mathcal{X}}$ 为 $(f,X)$ 实例的集合。
   ![image-20240116164815272]({{site.url}}/img/2024-1-16-NIPS23-BQ-NCO-Bisimulation-Quotienting-for-Efficient-Neural-Combinatorial-Optimization/image-20240116164815272.png)
 
 映射
-$\Phi_{(f,X)}{:}\bar{X}\mapsto\mathcal{F}_{\mathcal{X}}$ 是 $\mathcal{M}$ 和 $\mathcal{M}_{(f,X)}$
-的bisimulation（应该是叫做双模拟）。
+
+$$
+\Phi_{(f,X)}{:}\bar{X}\mapsto\mathcal{F}_{\mathcal{X}}
+$$
+
+是 $\mathcal{M}$ 和 $\mathcal{M}_{(f,X)}$ 的bisimulation（应该是叫做双模拟）。
 
 形式上，$\mathcal{M}$ 通过双模拟与直接MDP的商同构，因此称为双模拟商(BQ-)MDP（Bisimulation Quotiented (BQ-)MDP）。
 
@@ -132,7 +136,7 @@ $\Phi_{(f,X)}{:}\bar{X}\mapsto\mathcal{F}_{\mathcal{X}}$ 是 $\mathcal{M}$ 和 $
 
 ### 实例参数化和递归
 
-为了实现BQ-MDP，一个关键要求是 $(f*y,X*y)$ 可以在与 $(f, X)$ 相同的参数空间中表示。事实上，对于满足尾部递归属性的COP来说就是这样：在对实例应用了许多构造步骤之后，剩余的尾部子问题本身就是原始COP的一个实例。这是CO中一个非常常见的性质，特别是包括动态规划的最优性原则：所有适合动态规划的问题都满足尾递归性质。对于这些尾递归cop，双模拟只是将部分解映射到它所引起的尾子问题实例。
+为了实现BQ-MDP，一个关键要求是 $(f\ast y,X\ast y)$ 可以在与 $(f, X)$ 相同的参数空间中表示。事实上，对于满足尾部递归属性的COP来说就是这样：在对实例应用了许多构造步骤之后，剩余的尾部子问题本身就是原始COP的一个实例。这是CO中一个非常常见的性质，特别是包括动态规划的最优性原则：所有适合动态规划的问题都满足尾递归性质。对于这些尾递归cop，双模拟只是将部分解映射到它所引起的尾子问题实例。
 
 作者举例了背包问题和path-TSP（最短路径问题）。
 
