@@ -58,7 +58,7 @@ $X$ 是有限非空可行解，$f$ 是目标函数。
 - $\mathcal{X}$ 是所有部分解的集合
 - $\circ$ 表示一种运算，$x\circ y$ 表示部分解 $x$ 的后面拼接部分解 $y$
 - $\epsilon$ 表示空解
-- $\mathcal{Z}\sub\mathcal{X}$ 表示一步解的集合
+- $\mathcal{Z}\subset\mathcal{X}$ 表示一步解的集合
 
 $\mathcal{X}$ 的任何元素都有有限正数的阶跃分解:
 
