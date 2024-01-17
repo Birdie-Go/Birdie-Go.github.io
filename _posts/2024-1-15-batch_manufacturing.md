@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      batch manufacturing
-subtitle:   NIPS23
+subtitle:   随机过程
 date:       2024/1/15
 author:     Birdie
 header-img: img/post_header.jpg
