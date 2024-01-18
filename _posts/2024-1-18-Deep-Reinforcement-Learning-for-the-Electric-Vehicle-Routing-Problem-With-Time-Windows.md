@@ -132,5 +132,5 @@ Deep Reinforcement Learning for the Electric Vehicle Routing Problem With Time W
 ### 值得思考的点
 
 1. ~~ECVRPTW，当然还有更复杂的，就是可以多次服务同一个节点，因为装不完分开装~~
-2. 我搜这个问题的时候看到另一篇文章，不过我没有点进去看，他研究的是充电是否需要充满：[Energies | Free Full-Text | Goods Delivery with Electric Vehicles: Electric Vehicle Routing Optimization with Time Windows and Partial or Full Recharge (mdpi.com)](https://www.mdpi.com/1996-1073/15/1/285)
+2. 我搜这个问题的时候看到另一篇文章，不过我没有点进去看，他研究的是充电是否需要充满：https://www.mdpi.com/1996-1073/15/1/285
 3. 使用迭代改进式的方法
