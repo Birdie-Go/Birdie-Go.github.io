@@ -13,7 +13,7 @@ tags:
 
 Deep Reinforcement Learning for the Electric Vehicle Routing Problem With Time Windows
 
-文章原文：[Deep Reinforcement Learning for the Electric Vehicle Routing Problem With Time Windows | IEEE Journals & Magazine | IEEE Xplore](https://ieeexplore.ieee.org/document/9520134)
+文章原文：https://ieeexplore.ieee.org/document/9520134
 
 发表在2022 IEEE Transactions on Intelligent Transportation Systems
 
@@ -64,7 +64,7 @@ Deep Reinforcement Learning for the Electric Vehicle Routing Problem With Time W
 - 转移
 
   - 系统时间转移
-  
+
     $$
     \tau^{t+1}=\begin{cases}\max(\tau^t,e_{y^t})+s+w(y^t,y^{t+1}),&\mathrm{if~}y^t\in V_c\\\tau^t+re(b^t)+w(y^t,y^{t+1}),&\mathrm{if~}y^t\in V_s\\w(y^t,y^{t+1}),&\mathrm{if~}y^t\in V_d&\end{cases}
     $$
