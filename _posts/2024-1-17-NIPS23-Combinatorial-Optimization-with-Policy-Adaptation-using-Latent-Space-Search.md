@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      Combinatorial Optimization with Policy Adaptation using Latent Space Search
-subtitle:   NIPS23
+subtitle:   NIPS23 潜在空间采样学习+推理时候搜索
 date:       2024/1/17
 author:     Birdie
 header-img: img/post_header.jpg

@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      BQ-NCO Bisimulation Quotienting for Efficient Neural Combinatorial Optimization
-subtitle:   NIPS23
+subtitle:   NIPS23 新的马尔可夫决策过程表示并改进学习框架
 date:       2024/1/16
 author:     Birdie
 header-img: img/post_header.jpg

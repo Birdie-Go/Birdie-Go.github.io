@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      Winner Takes It All-Training Performant RL Populations for Combinatorial Optimization
-subtitle:   NIPS23
+subtitle:   NIPS23 多智能体（种群）学习
 date:       2024/1/16
 author:     Birdie
 header-img: img/post_header.jpg
