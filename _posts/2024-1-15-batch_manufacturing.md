@@ -45,7 +45,7 @@ the total expected cost with discount factor $\alpha < 1$.
 Discounted problems $(0<\alpha<1)$
 
 $$
-\lim _{N \rightarrow \infty} \underset{\substack{w_k \\ k=0,1, \ldots}}{E}\left\{\sum_{k=0}^{N-1} \alpha^k g\left(x_k, \mu_k\left(x_k\right), w_k\right)\right\}
+\lim _{N \rightarrow \infty} \underset{\substack{w_k \\ k=0,1, \ldots}}{E}\left\lbrace\sum_{k=0}^{N-1} \alpha^k g\left(x_k, \mu_k\left(x_k\right), w_k\right)\right\rbrace
 $$
 
 - $\alpha$ 表示衰减率
@@ -98,7 +98,7 @@ $$
 Average cost per stage problems
 
 $$
-\lim _{N \rightarrow \infty} \frac{1}{N} \underset{\substack{w_k \\ k=0,1, \ldots}}{E}\left\{\sum_{k=0}^{N-1} g\left(x_k, \mu_k\left(x_k\right), w_k\right)\right\}
+\lim _{N \rightarrow \infty} \frac{1}{N} \underset{\substack{w_k \\ k=0,1, \ldots}}{E}\left\lbrace\sum_{k=0}^{N-1} g\left(x_k, \mu_k\left(x_k\right), w_k\right)\right\rbrace
 $$
 
 - $g(x_k, \mu_k\left(x_k\right), w_k)$表示从状态 $x_k$ 执行动作 $\mu_k(x_k)$ 到达状态$w_k$的代价
@@ -149,11 +149,11 @@ $$
 
 ### 马尔科夫决策建模
 
-- State $i \in\{0,1, \cdots, n\}$ : number of unfilled orders
-- Action $u \in\{0,1\}$ : process (1) or not (0)
+- State $i \in\lbrace0,1, \cdots, n\rbrace$ : number of unfilled orders
+- Action $u \in\lbrace0,1\rbrace$ : process (1) or not (0)
 
   $$
-  u \in\{0,1\}, \text { if } i<n ; \quad u=1 \text {, if } i=n
+  u \in\lbrace0,1\rbrace, \text { if } i<n ; \quad u=1 \text {, if } i=n
   $$
 
 - State Transition $p_{i j}(u)$ :
@@ -209,7 +209,7 @@ $$
 
 $$
 \begin{aligned}
-J_{\mu^{k+1}}(i)&=\left\{
+J_{\mu^{k+1}}(i)&=\left\lbrace
 	\begin{aligned}
 	K+\alpha(1-p) J_{\mu^k}(0)+\alpha p J_{\mu^k}(1) \quad \mu^k(i)=0\\
 	c i+\alpha(1-p) J_{\mu^k}(i)+\alpha p J_{\mu^k}(i+1) \quad \mu^k(i)=1\\
@@ -227,7 +227,7 @@ $$
 \begin{aligned}
     \text{cost}_{process}(i) &= K+(1-p) J_{\mu^k}(0)+ p J_{\mu^k}(1)+\lambda_{k}\\
     \text{cost}_{unprocess}(i) &= c i+(1-p) J_{\mu^k}(i)+ p J_{\mu^k}(i+1)+\lambda_{k}\\
-    \mu^{k+1}(i)&=\left\{
+    \mu^{k+1}(i)&=\left\lbrace
         \begin{aligned}
             0 \quad \text{cost}_{process}(i)\geq\text{cost}_{unprocess}(i)\\
             1 \quad \text{cost}_{process}(i)<\text{cost}_{unprocess}(i)\\
@@ -289,7 +289,7 @@ $$
 $$
 \begin{aligned}
 \lambda_{k}&=(1 - p) * J_k(0) + p * J_k(1)\\
-J_{\mu^{k+1}}(i)&=\left\{
+J_{\mu^{k+1}}(i)&=\left\lbrace
 	\begin{aligned}
 	K+(1-p) J_{\mu^k}(0)+ p J_{\mu^k}(1)-\lambda_{k} \quad \mu^k(i)=0\\
 	c i+(1-p) J_{\mu^k}(i)+ p J_{\mu^k}(i+1)-\lambda_{k} \quad \mu^k(i)=1\\
@@ -307,7 +307,7 @@ $$
 \begin{aligned}
     \text{cost}_{process}(i) &= K+(1-p) J_{\mu^k}(0)+ p J_{\mu^k}(1)+\lambda_{k}\\
     \text{cost}_{unprocess}(i) &= c i+(1-p) J_{\mu^k}(i)+ p J_{\mu^k}(i+1)+\lambda_{k}\\
-    \mu^{k+1}(i)&=\left\{
+    \mu^{k+1}(i)&=\left\lbrace
         \begin{aligned}
             0 \quad \text{cost}_{process}(i)\geq\text{cost}_{unprocess}(i)\\
             1 \quad \text{cost}_{process}(i)<\text{cost}_{unprocess}(i)\\

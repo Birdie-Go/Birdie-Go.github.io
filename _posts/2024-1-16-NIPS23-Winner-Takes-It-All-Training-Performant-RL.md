@@ -129,7 +129,7 @@ $b_\rho$ 是baseline。
 
 Poppy的组成部分:一个鼓励代理专业化的RL目标（RL objective encouraging agent specialization），以及一个利用预训练策略的有效训练过程。
 
-假如有 $K$ 个策略 $\{\pi_1,\cdots,\pi_K\}$，群体目标是
+假如有 $K$ 个策略 $\lbrace\pi_1,\cdots,\pi_K\rbrace$，群体目标是
 
 $$
 J_{\mathrm{pop}}(\theta_{1},\ldots,\theta_{K})\doteq\mathbb{E}_{\rho\sim\mathcal{D}}\mathbb{E}_{\tau_{1}\sim\pi_{\theta_{1}},\ldots,\tau_{K}\sim\pi_{\theta_{K}}}\max\left[R(\tau_{1}),\ldots,R(\tau_{K})\right],

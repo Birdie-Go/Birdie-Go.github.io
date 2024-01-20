@@ -108,7 +108,7 @@ EL-DRL基于一个猜想，在基于集成的学习范式中，神经网络参�
 
 EL-DRL结构：它使用各自的屏蔽奖励(强化损失)信号和不等式正则化来训练子策略以最大化多样性。在推理过程中，子策略通过利用它们在不同分布上的优势进行协同。不同程度的透明度表明每个子政策在得出解决方案时的贡献不同。
 
-具体来说，配备了 $M$ 个子策略网络，每个策略网络都是一个POMP。策略网络可以表示成 $\pi_\theta$，对于一个大小为 $N$ 的实例，一个策略网络可以得到一组解的轨迹， $\{\tau^1,\tau^2,\cdots,\tau^N\}$ ，并且可以得到其奖励 $R(\tau^i)$。对于一个策略网络，其强化学习的目标是
+具体来说，配备了 $M$ 个子策略网络，每个策略网络都是一个POMP。策略网络可以表示成 $\pi_\theta$，对于一个大小为 $N$ 的实例，一个策略网络可以得到一组解的轨迹， $\lbrace\tau^1,\tau^2,\cdots,\tau^N\rbrace$ ，并且可以得到其奖励 $R(\tau^i)$。对于一个策略网络，其强化学习的目标是
 
 $$
 \mathcal{L}=\mathbb{E}_{\tau^1 \sim \pi_\theta} R\left(\tau^1\right) \mathbb{E}_{\tau^2 \sim \pi_\theta} R\left(\tau^2\right) \ldots \mathbb{E}_{\tau^N \sim \pi_\theta} R\left(\tau^N\right)

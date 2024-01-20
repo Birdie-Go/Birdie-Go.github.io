@@ -80,7 +80,7 @@ DeepACO提供了覆盖路由、分配、调度和子集问题的八种cop的有�
 
 COP模型包括：
 
-- 搜索空间 $S$ 定义了一组离散决策变量 $X_i,i=1,\cdots,n$，其中每个决策变量 $X_i$ 取自一个有限集合 $D_i=\{v_i^1,\cdots,v_i^{|D_i|}\}$
+- 搜索空间 $S$ 定义了一组离散决策变量 $X_i,i=1,\cdots,n$，其中每个决策变量 $X_i$ 取自一个有限集合 $D_i=\lbracev_i^1,\cdots,v_i^{\mid D_i\mid}\rbrace$
 - 决策变量必须满足的一组约束 $\Omega$
 - 目标函数 $f\rightarrow \mathbb{R}_0^+$ 求最小值
 
@@ -96,10 +96,10 @@ COP模型定义了蚁群算法的信息素模型。不是一般性，信息素�
 
 #### 构造解和局部搜索（可选）
 
-在 $\tau_{ij}$ 和 $\eta_{ij}$ 的偏置下， 人工蚂蚁通过遍历构造图可以构造出一个解 $s=\{s_t\}_{t=1}^n$。如果 $t$ 时刻蚂蚁在节点 $i$，此时已经有一个局部解 $s_{<t}=\{s_t\}_{t=1}^{t-1}$，蚂蚁选择 $j$ 作为下一个目的地的概率可以表示成
+在 $\tau_{ij}$ 和 $\eta_{ij}$ 的偏置下， 人工蚂蚁通过遍历构造图可以构造出一个解 $s=\lbraces_t\rbrace_{t=1}^n$。如果 $t$ 时刻蚂蚁在节点 $i$，此时已经有一个局部解 $s_{<t}=\lbraces_t\rbrace_{t=1}^{t-1}$，蚂蚁选择 $j$ 作为下一个目的地的概率可以表示成
 
 $$
-\left.P(s_t|s_{<t},\rho)=\left\{
+\left.P(s_t|s_{<t},\rho)=\left\lbrace
 	\begin{array}{ll}
 		\frac{\tau_{ij}^\alpha\cdot\eta_{ij}^\beta}{\sum_{c_{il}\in\boldsymbol{N}(s_{<t})}\tau_{il}^\alpha\cdot\eta_{il}^\beta}
 			&\text{if}\quad c_{ij}\in\boldsymbol{N}(s_{<t}),\\
@@ -210,24 +210,24 @@ $$
 > 现在要比较两个概率分布 $p,q$。KL散度即为
 > 
 > $$
-> D_{KL}(p||q)=\sum_{i=1}^Np(x_i)(\log p(x_i)-\log q(x_i))
+> D_{KL}(p\mid\mid q)=\sum_{i=1}^Np(x_i)(\log p(x_i)-\log q(x_i))
 > $$
 >
 > 本质上，KL散度是两个概率分布模型之间对数差的期望，可以表示成
 >
 > $$
-> D_{KL}(p||q)=E[\log p(x_i)-\log q(x_i)]
+> D_{KL}(p\mid\mid q)=E[\log p(x_i)-\log q(x_i)]
 > $$
 >
 > 在平时使用中，KL散度一般写成
 >
 > $$
-> D_{KL}(p||q)=\sum_{i=1}^Np(x_i)\log\frac{p(x_i)}{q(x_i)}
+> D_{KL}(p\mid\mid q)=\sum_{i=1}^Np(x_i)\log\frac{p(x_i)}{q(x_i)}
 > $$
 >
 > KL散度越小，表示差异越小。
 >
-> 值得注意的是，KL散度不是距离，是非对称的。比较 $D_{KL}(p||q)$ 和 $D_{KL}(r||q)$ 可以衡量 $p,r$ 哪个更接近 $q$，但是比较 $D_{KL}(p||q),D_{KL}(r||q),D_{KL}(p||r)$ 三个之间的数值关系是没有意义的。
+> 值得注意的是，KL散度不是距离，是非对称的。比较 $D_{KL}(p\mid\mid q)$ 和 $D_{KL}(r\mid\mid q)$ 可以衡量 $p,r$ 哪个更接近 $q$，但是比较 $D_{KL}(p\mid\mid q),D_{KL}(r\mid\mid q),D_{KL}(p\mid\mid r)$ 三个之间的数值关系是没有意义的。
 
 #### Top-k 熵损失
 

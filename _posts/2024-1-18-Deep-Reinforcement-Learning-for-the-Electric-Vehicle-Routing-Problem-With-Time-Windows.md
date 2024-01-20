@@ -43,13 +43,13 @@ Deep Reinforcement Learning for the Electric Vehicle Routing Problem With Time W
 - $e_i,l_i$ 是时间窗口，时间窗口最大范围是 $[0, T]$
 - $d_i^t$ 表示在 $t$ 时刻车辆到节点 $i$ 的剩余需求
 
-全局变量 $G^t=\{\tau^t,b^t,ev^t\}$
+全局变量 $G^t=\lbrace\tau^t,b^t,ev^t\rbrace$
 
 - $\tau^t$ 表示当前时间
 - $b^t$ 表示当前电量
 - $ev^t$ 表示有多少台车还在运行
 
-一条轨迹 $\{0,3,2,0,4,1,0\}$ 表示两台电车的轨迹，一条是 $\{0,3,2,0\}$，另一条是 $\{0,4,1,0\}$。
+一条轨迹 $\lbrace0,3,2,0,4,1,0\rbrace$ 表示两台电车的轨迹，一条是 $\lbrace0,3,2,0\rbrace$，另一条是 $\lbrace0,4,1,0\rbrace$。
 
 
 
@@ -84,17 +84,17 @@ Deep Reinforcement Learning for the Electric Vehicle Routing Problem With Time W
     
     $$
     \begin{aligned}
-    &ev^{t+1}= \left.\left\{\begin{array}{ll}ev^t-1,&\mathrm{if~}y^t\in V_d\\ev^t,&\mathrm{otherwise}\end{array}\right.\right.  \\
-    &d_i^{t+1}= \left.\left\{\begin{matrix}0,&y^t=\mathrm{i}\\d_i^t,&\mathrm{otherwise}\end{matrix}\right.\right. 
+    &ev^{t+1}= \left.\left\lbrace\begin{array}{ll}ev^t-1,&\mathrm{if~}y^t\in V_d\\ev^t,&\mathrm{otherwise}\end{array}\right.\right.  \\
+    &d_i^{t+1}= \left.\left\lbrace\begin{matrix}0,&y^t=\mathrm{i}\\d_i^t,&\mathrm{otherwise}\end{matrix}\right.\right. 
     \end{aligned}
     $$
 
     车数有限，一次需求全部解决
 
-- 奖励：假设最终的路线是 $Y^{t_{m}}=\{y^{0},y^{1},\ldots,y^{t_{m}}\}^{k}$，奖励定义为
+- 奖励：假设最终的路线是 $Y^{t_{m}}=\lbracey^{0},y^{1},\ldots,y^{t_{m}}\rbrace^{k}$，奖励定义为
   
   $$
-  r(Y^{t_m})=-\sum_{t=1}^{t_m}w(y^{t-1},y^t)+\beta_1\max\{-ev^{t_m},0\}+\beta_2S(Y^{t_m})+\beta_3\sum_{t=0}^{t_m}\max\{-b^t,0\}
+  r(Y^{t_m})=-\sum_{t=1}^{t_m}w(y^{t-1},y^t)+\beta_1\max\lbrace-ev^{t_m},0\rbrace+\beta_2S(Y^{t_m})+\beta_3\sum_{t=0}^{t_m}\max\lbrace-b^t,0\rbrace
   $$
 
   - 第一部分是目标函数，总行驶距离越短越好，后面三个部分是惩罚，$\beta_{123}$ 都是负常数
