@@ -209,7 +209,7 @@ $$
 P\left(\tau \in \mathcal{U}, \tau^{\prime} \in \mathcal{U}\right), P\left(\tau^{\prime} \in \mathcal{F} \mid \tau \in \mathcal{U}\right), P\left(\tau^{\prime} \in \mathcal{U} \mid \tau \in \mathcal{F}\right), P\left(\tau^{\prime} \in \mathcal{F} \mid \tau \in \mathcal{F}\right)
 $$
 
-，以及一个二元指标表示当前解的可行性。为了使策略网络依赖这些ES特征，引入了两个超网络 $\text{MLP}_{\mu}$ 和 $\text{MLP}_{\lambda}$，以 $\mathcal{J}_{t}$ 为输入，生成上述对偶流上下文模型中的 $W_{\mu}^O, W_{\lambda^O}$。网络结构是（9 x 8 x d）以减少计算成本。
+，以及一个二元指标表示当前解的可行性。为了使策略网络依赖这些ES特征，引入了两个超网络 $\text{MLP}\_{\mu}$ 和 $\text{MLP}\_{\lambda}$，以 $\mathcal{J}\_{t}$ 为输入，生成上述对偶流上下文模型中的 $W\_{\mu}^O, W\_{\lambda^O}$。网络结构是（9 x 8 x d）以减少计算成本。
 
 #### 奖励塑造
 
