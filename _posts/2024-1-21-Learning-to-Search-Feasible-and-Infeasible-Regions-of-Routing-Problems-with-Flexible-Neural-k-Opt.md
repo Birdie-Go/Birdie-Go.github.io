@@ -197,7 +197,19 @@ GIRE在策略网络中补充了 违反指标（Violation Indicator，VI）和勘
 
 VI 记录了当前解决方案中特定的不可行的部分，对于CVRP，使用两个二元变量分别表示访问特定节点之前或之后的累计容量是否超过容量限制。
 
-ES 提供了正在探索行为的统计数据，定义 $\mathcal{H}_t:=\left\{\left(\tau_{t^{\prime}} \rightarrow \tau_{t^{\prime}+1}\right)\right\}\mid_{t^{\prime}=t-T_{\text {his }}} ^{t-1}$ 作为最近 $T_{\text{his}}$ 步转换的集合。ES特征 $\mathcal{J}_t$ 由 $\mathcal{H}_t$ 导出的估计可行性转移概率组成，包括 $P\left(\tau \in \mathcal{U}, \tau^{\prime} \in \mathcal{U}\right), P\left(\tau^{\prime} \in \mathcal{F} \mid \tau \in \mathcal{U}\right), P\left(\tau^{\prime} \in \mathcal{U} \mid \tau \in \mathcal{F}\right), P\left(\tau^{\prime} \in \mathcal{F} \mid \tau \in \mathcal{F}\right)$，以及一个二元指标表示当前解的可行性。为了使策略网络依赖这些ES特征，引入了两个超网络 $\text{MLP}_\mu$ 和 $\text{MLP}_\lambda$，以 $\mathcal{J}_t$ 为输入，生成上述对偶流上下文模型中的 $W_\mu^O, W_\lambda^O$。网络结构是（9 x 8 x d）以减少计算成本。
+ES 提供了正在探索行为的统计数据，定义 
+
+$$
+\mathcal{H}_t:=\left\{\left(\tau_{t^{\prime}} \rightarrow \tau_{t^{\prime}+1}\right)\right\}\mid_{t^{\prime}=t-T_{\text {his }}} ^{t-1}
+$$
+
+作为最近 $T_{\text{his}}$ 步转换的集合。ES特征 $\mathcal{J}_t$ 由 $\mathcal{H}_t$ 导出的估计可行性转移概率组成，包括 
+
+$$
+P\left(\tau \in \mathcal{U}, \tau^{\prime} \in \mathcal{U}\right), P\left(\tau^{\prime} \in \mathcal{F} \mid \tau \in \mathcal{U}\right), P\left(\tau^{\prime} \in \mathcal{U} \mid \tau \in \mathcal{F}\right), P\left(\tau^{\prime} \in \mathcal{F} \mid \tau \in \mathcal{F}\right)
+$$
+
+，以及一个二元指标表示当前解的可行性。为了使策略网络依赖这些ES特征，引入了两个超网络 $\text{MLP}_\mu$ 和 $\text{MLP}_\lambda$，以 $\mathcal{J}_t$ 为输入，生成上述对偶流上下文模型中的 $W_\mu^O, W_\lambda^O$。网络结构是（9 x 8 x d）以减少计算成本。
 
 #### 奖励塑造
 
