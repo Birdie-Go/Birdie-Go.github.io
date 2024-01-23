@@ -52,17 +52,23 @@ NIPS23 Let the Flows Tell Solving Graph Combinatorial Problems with GFlowNets
 生成流网络是一种变分（variational）推理算法，它将目标概率分布的采样视为一个连续的决策过程。
 
 假设状态集为 $\mathcal{S}$ 以及动作集合 $\mathcal{A}\subseteq\mathcal{S}\times\mathcal{S}$。一个确定性的MDP，其初始状态为 $s_0$，终止状态没有输出动作，表示为 $\mathcal{X}$。一个完整的轨迹是一系列的状态 $\tau=(s_0\rightarrow s_1\rightarrow\cdots\rightarrow s_n)$，其中 $s_n\in\mathcal{X}$，且 $\forall i(s_i,s_{i+1})\in\mathcal{A}$。MDP上的一个策略是分布 $P_F(s'\mid s)$ 的一个选择，其中 $s\in\mathcal{S}\setminus\mathcal{X}$ 且 $s'$ 是从 $s$ 一步得到的。一个策略经过一个完整的轨迹推导出一个分布
+
 $$
 P_{F}(\mathbf{s}_{0}\to\mathbf{s}_{1}\to\cdots\to\mathbf{s}_{n})=\prod_{i=0}^{n-1}P_{F}(\mathbf{s}_{i+1}\mid\mathbf{s}_{i})
 $$
+
 完整轨迹在终止状态的边缘分布记作 $P_F^{\top}$。这是一个在 $\mathcal{X}$ 上的分布，通常难以精确计算，
+
 $$
 P_{F}^{\top}(\mathbf{x})=\sum_{\tau\to\mathbf{x}}P_{F}(\tau)
 $$
+
 奖励函数是一个映射 $\mathcal{X}\rightarrow\mathbb{R}_{>0}$，可以理解为终止状态集合上的非归一化概率质量，通常表示为 $R(\mathbf{x})=\exp(-\mathcal{E}(\mathbf{x})/T)$，其中 $\mathcal{E}:\mathcal{X}\rightarrow\mathbb{R}$ 是一个能量函数且 $T>0$ 是一个温度参数。GFlowNet 近似解决的学习问题是拟合一个参数 $P_F(s'\mid s)$，使得诱导分布 $P_F^{\top}$ 与奖励函数成正比，
+
 $$
 P_{F}^{\top}(\mathbf{x})\propto R(\mathbf{x})=\exp(-\mathcal{E}(\mathbf{x})/T).
 $$
+
 将策略 $P_F(s'\mid s)$ 参数化为一个神经网络，以参数 $\theta$ 作为输入，并产生每个可能的后续状态 $s'$ 的转移概率。在给定 $P_F$ 的情况下，计算 $P_F^{\top}$ 是很困难的，而且奖励函数中的归一化常数是位置的。
 
 学习算法通过在优化中引入辅助对象来克服这些困难。
@@ -75,9 +81,11 @@ DB目标是学习两个对象以及参数转发策略 $P_F(s'\mid s;\theta)$
 - state flow：$F(\cdot;\theta):\mathcal{S}\rightarrow\mathbb{R}_{>0}$
 
 DB loss对于打死你个转移 $s\rightarrow s'$ 定义为
+
 $$
 \ell_{\mathrm{DB}}(\mathbf{s},\mathbf{s'};\boldsymbol{\theta})=\left(\log\frac{F(\mathbf{s};\boldsymbol{\theta})P_F(\mathbf{s'}|\mathbf{s};\boldsymbol{\theta})}{F(\mathbf{s'};\boldsymbol{\theta})P_B(\mathbf{s}|\mathbf{s'};\boldsymbol{\theta})}\right)^2.
 $$
+
 DB训练理论表明，如果对于任意的转移 $s\rightarrow s'$ 都有 $\ell_{\mathrm{DB}}(\mathbf{s},\mathbf{s'};\boldsymbol{\theta})=0$，那么策略 $P_F$ 会满足上述诱导分布 $P_F^{\top}$ 与奖励函数成正比。
 
 在本文中的问题，表现最好的损失相当于具有 $\log F(s)$ 特定参数化的DB，改参数化通过将log-state flow表示为部分累计的负能量的加性校正来引导学习。
@@ -85,9 +93,11 @@ DB训练理论表明，如果对于任意的转移 $s\rightarrow s'$ 都有 $\el
 #### Trajectory balance（TB）
 
 TB目标除了动作策略 $P_F$ 之外，还学习了一个后向策略 $P_B$ 和一个单一标量 $Z_\theta$，他是DB参数化中与初始状态流 $F(s_0)$ 对应的分配函数的估计量。完整轨迹的TB损失为
+
 $$
 \ell_\mathrm{TB}(\tau;\boldsymbol{\theta})=\left(\log\frac{Z_{\boldsymbol{\theta}}\prod_{i=0}^{n-1}P_{F}(\mathbf{s}_{i+1}|\mathbf{s}_{i};\boldsymbol{\theta})}{R(\mathbf{x})\prod_{i=0}^{n-1}P_{B}(\mathbf{s}_{i}|\mathbf{s}_{i+1};\boldsymbol{\theta})}\right)^2.
 $$
+
 TB训练理论表明，如果对于所有的完整轨迹都有 $\ell_\mathrm{TB}(\tau;\boldsymbol{\theta})=0$，那么策略 $P_F$ 会满足上述诱导分布 $P_F^{\top}$ 与奖励函数成正比。进一步来说，$\hat{Z}=\sum_{\mathbf{x}\in\mathcal{X}}R(\mathbf{x})$。
 
 进一步来说，策略和流通常在log域中输出，即神经网络预测分布 $P_F(\cdot\mid s),P_B(\cdot\mid s')$ ，log-flows $F(s)$ 和 $\log Z$。
