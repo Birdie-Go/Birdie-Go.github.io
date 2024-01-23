@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      BQ-NCO Bisimulation Quotienting for Efficient Neural Combinatorial Optimization
+title:      NIPS23 Let the Flows Tell Solving Graph Combinatorial Problems with GFlowNets
 subtitle:   NIPS23 GFlowNets
 date:       2024/1/23
 author:     Birdie
