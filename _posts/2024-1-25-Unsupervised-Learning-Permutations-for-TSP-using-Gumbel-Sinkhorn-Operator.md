@@ -101,7 +101,7 @@ $$
 \begin{array}{rcl}S^0(X)&=&\exp(X),\\S^l(X)&=&\mathcal{T}_c\left(\mathcal{T}_r(S^{l-1}(X))\right),\\S(X)&=&\lim_{l\to\infty}S^l(X).\end{array}
 $$
 
-其中 $\mathcal{T}_{r}(X)=X\otimes(X\mathbf{1}_{n}\mathbf{1}_{n}^{\top})$ 和 $\mathcal{T}_{c}(X)=X\otimes(\mathbf{1}_{n}\mathbf{1}_{n}^{\top}X)$ 为矩阵的逐行和逐列归一化算子，$\otimes$ 表示逐元素除法，$\mathbf{1}_{n}$ 是全1列向量。
+其中 $\mathcal{T}\_{r}(X)=X\otimes(X\mathbf{1}\_{n}\mathbf{1}\_{n}^{\top})$ 和 $\mathcal{T}\_{c}(X)=X\otimes(\mathbf{1}\_{n}\mathbf{1}\_{n}^{\top}X)$ 为矩阵的逐行和逐列归一化算子，$\otimes$ 表示逐元素除法，$\mathbf{1}\_{n}$ 是全1列向量。
 
 #### 构建Gumbel-Sinkhorn分布
 
