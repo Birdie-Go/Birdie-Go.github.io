@@ -216,3 +216,33 @@ TSP的解来自Concorde求解器，ATSP和CVRP是LKH，op是EA4OP启发式，数
 将框架从确定性cop扩展到随机cop将特别有趣。
 
 附录没看，附录里面特别多东西。
+
+
+\begin{table}[!t]
+\small
+    \centering
+    % \caption{The figure illustrates the instance number of the standard dataset, the number of nodes in each instance (with data distribution corresponding to the instance number's name, e.g., ``lr101" indicates instance 01 with data distribution lr1), the objective function value and route count obtained by the LKH3 solver (with the same parameter settings as the comparative experiments), the objective function value and route count obtained by TSTE, and the Gap between the objective function values of the solutions obtained by TSTE and LKH3.}
+    \caption{The comparison results between our TSTE and LKH3 on the benchmark instances.}
+    \label{tab:stardand}
+    \begin{tabular}{|ll|l|ll|ll|}
+    \hline
+        Instance & Scale & LKH3 Obj. & Heu Obj. & Heu Gap & TSTE Obj. & TSTE Gap \\ \hline
+        lr101 & 107 & 16.508  & 17.493 & 5.97\% & 17.206  & 4.23\% \\
+        lr102 & 111 & 14.876  & 15.61 & 4.94\% & 15.720  & 5.68\% \\
+        lr103 & 105 & 12.927  & 13.332 & 3.14\% & 13.658  & 5.66\% \\
+        lr104 & 105 & 10.134  & 11.095 & 9.48\% & 10.224  & 0.89\% \\
+        lr105 & 107 & 13.771  & 14.273 & 3.64\% & 14.015  & 1.77\% \\
+        lr106 & 105 & 12.526  & 12.981 & 3.63\% & 12.772  & 1.96\% \\
+        lr107 & 105 & 11.113  & 11.113 & 0.00\% & 11.960  & 7.62\% \\
+        lr108 & 101 & 9.690  & 10.374 & 7.06\% & 9.823  & 1.37\% \\
+        \multicolumn{7}{|c|}{}  \\ \hline
+        lrc101 & 107 & 17.0321  & ~ & ~ & 18.0904  & 6.21\% \\
+        lrc102 & 107 & 15.5807  & ~ & ~ & 16.0479  & 3.00\% \\
+        lrc103 & 107 & 12.5874  & ~ & ~ & 13.1927  & 4.81\% \\
+        lrc104 & 109 & 11.2840  & ~ & ~ & 13.4021  & 18.77\% \\
+        lrc105 & 109 & 16.7966  & ~ & ~ & 16.9299  & 0.79\% \\
+        lrc106 & 107 & 14.7893  & ~ & ~ & 14.9046  & 0.78\% \\
+        lrc107 & 107 & 12.3015  & ~ & ~ & 12.7734  & 3.84\% \\
+        lrc108 & 105 & 11.4743  & ~ & ~ & 12.5843  & 9.67\% \\ \hline
+    \end{tabular}
+\end{table}
