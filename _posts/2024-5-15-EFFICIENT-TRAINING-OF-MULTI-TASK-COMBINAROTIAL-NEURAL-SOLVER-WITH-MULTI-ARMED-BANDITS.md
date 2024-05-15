@@ -46,7 +46,7 @@ https://arxiv.org/abs/2305.06361
 
 ### 方法
 
-考虑 $K$ 个COPs，表示成 $T^i(i=1,2,\cdots,K)$，每个问题有 $n_i$ 种不同的问题规模，整个任务集合为 $\mathcal{T}=\cup_{i=1}^K T^i=\{T^i_j|j=1,2,\cdots,n_i,i=1,2,\cdots,K \}$。
+考虑 $K$ 个COPs，表示成 $T^i(i=1,2,\cdots,K)$，每个问题有 $n_i$ 种不同的问题规模，整个任务集合为 $\mathcal{T}=\cup_{i=1}^K T^i=\{T^i_j\mid j=1,2,\cdots,n_i,i=1,2,\cdots,K \}$。
 
 求解器 $S_{\Theta^i}(\mathcal{I}_j^i):T_j^i\rightarrow \mathcal{Y}_j^i$，其中 $\Theta^i=(\theta^{share},\theta^i)$ 是COP $T^i$ 的参数，$\mathcal{I}_j^i,\mathcal{Y}_j^i$ 分别是输入和输出。目标函数
 
