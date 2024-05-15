@@ -91,7 +91,7 @@ Deep Reinforcement Learning for the Electric Vehicle Routing Problem With Time W
 
     车数有限，一次需求全部解决
 
-- 奖励：假设最终的路线是 $Y^{t_{m}}=\lbracey^{0},y^{1},\ldots,y^{t_{m}}\rbrace^{k}$，奖励定义为
+- 奖励：假设最终的路线是 $Y^{t_{m}}=\lbrace y^{0},y^{1},\ldots,y^{t_{m}}\rbrace^{k}$，奖励定义为
   
   $$
   r(Y^{t_m})=-\sum_{t=1}^{t_m}w(y^{t-1},y^t)+\beta_1\max\lbrace-ev^{t_m},0\rbrace+\beta_2S(Y^{t_m})+\beta_3\sum_{t=0}^{t_m}\max\lbrace-b^t,0\rbrace

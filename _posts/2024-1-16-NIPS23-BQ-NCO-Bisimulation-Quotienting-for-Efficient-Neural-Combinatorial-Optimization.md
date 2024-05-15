@@ -63,14 +63,14 @@ $X$ 是有限非空可行解，$f$ 是目标函数。
 $\mathcal{X}$ 的任何元素都有有限正数的阶跃分解:
 
 $$
-\forall x\in{\mathcal X},0<|\lbracez_{1:n}\in{\mathcal Z}^{n}:x=z_{1}\circ\cdots\circ z_{n}\rbrace|<\infty.
+\forall x\in{\mathcal X},0<|\lbrace z_{1:n}\in{\mathcal Z}^{n}:x=z_{1}\circ\cdots\circ z_{n}\rbrace|<\infty.
 $$
 
 ### 直接MDP
 
 直接MDP $\mathcal{M}_{(f,X)}$，
 
-- state space：$\bar{X}=\lbracex{\in}{\mathcal X}:\exists y{\in}{\mathcal X},x{\circ}y{\in}X\rbrace$
+- state space：$\bar{X}=\lbrace x{\in}{\mathcal X}:\exists y{\in}{\mathcal X},x{\circ}y{\in}X\rbrace$
 
 - action space：$\mathcal{Z}\cup\lbrace\epsilon\rbrace$
 

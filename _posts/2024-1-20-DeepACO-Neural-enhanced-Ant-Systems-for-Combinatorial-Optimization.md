@@ -80,7 +80,7 @@ DeepACO提供了覆盖路由、分配、调度和子集问题的八种cop的有�
 
 COP模型包括：
 
-- 搜索空间 $S$ 定义了一组离散决策变量 $X_i,i=1,\cdots,n$，其中每个决策变量 $X_i$ 取自一个有限集合 $D_i=\lbracev_i^1,\cdots,v_i^{\mid D_i\mid}\rbrace$
+- 搜索空间 $S$ 定义了一组离散决策变量 $X_i,i=1,\cdots,n$，其中每个决策变量 $X_i$ 取自一个有限集合 $D_i=\lbrace v_i^1,\cdots,v_i^{\mid D_i\mid}\rbrace$
 - 决策变量必须满足的一组约束 $\Omega$
 - 目标函数 $f\rightarrow \mathbb{R}_0^+$ 求最小值
 
@@ -96,7 +96,7 @@ COP模型定义了蚁群算法的信息素模型。不是一般性，信息素�
 
 #### 构造解和局部搜索（可选）
 
-在 $\tau_{ij}$ 和 $\eta_{ij}$ 的偏置下， 人工蚂蚁通过遍历构造图可以构造出一个解 $s=\lbraces_t\rbrace_{t=1}^n$。如果 $t$ 时刻蚂蚁在节点 $i$，此时已经有一个局部解 $s_{<t}=\lbraces_t\rbrace_{t=1}^{t-1}$，蚂蚁选择 $j$ 作为下一个目的地的概率可以表示成
+在 $\tau_{ij}$ 和 $\eta_{ij}$ 的偏置下， 人工蚂蚁通过遍历构造图可以构造出一个解 $s=\lbrace s_t\rbrace_{t=1}^n$。如果 $t$ 时刻蚂蚁在节点 $i$，此时已经有一个局部解 $s_{<t}=\lbrace s_t\rbrace_{t=1}^{t-1}$，蚂蚁选择 $j$ 作为下一个目的地的概率可以表示成
 
 $$
 \left.P(s_t|s_{<t},\rho)=\left\lbrace
