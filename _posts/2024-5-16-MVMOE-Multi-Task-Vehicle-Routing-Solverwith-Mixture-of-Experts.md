@@ -15,7 +15,7 @@ tags:
 
 MVMoE: Multi-Task Vehicle Routing Solver with Mixture-of-Experts
 
-<img src=".\fig\image-20240507144751639.png" alt="image-20240507144751639" style="zoom: 67%;" />
+<img src="{{site.url}}/img/2024-5-16-MVMOE-Multi-Task-Vehicle-Routing-Solverwith-Mixture-of-Experts/image-20240507144751639.png" alt="image-20240507144751639" style="zoom: 67%;" />
 
 代码：https://github.com/RoyalSkye/Routing-MVMoE
 
