@@ -33,7 +33,7 @@ MVMoE: Multi-Task Vehicle Routing Solver with Mixture-of-Experts
 
   多臂赌博机的应用
 
-  博客：[EFFICIENT TRAINING OF MULTI-TASK COMBINAROTIAL NEURAL SOLVER WITH MULTI-ARMED BANDITS - Birdie的博客 | Birdie Blog (birdie-go.github.io)](https://birdie-go.github.io/2024/05/15/EFFICIENT-TRAINING-OF-MULTI-TASK-COMBINAROTIAL-NEURAL-SOLVER-WITH-MULTI-ARMED-BANDITS/)
+  博客：https://birdie-go.github.io/2024/05/15/EFFICIENT-TRAINING-OF-MULTI-TASK-COMBINAROTIAL-NEURAL-SOLVER-WITH-MULTI-ARMED-BANDITS/
 
 - Lin, Z., Wu, Y., Zhou, B., Cao, Z., Song, W., Zhang, Y., and Senthilnath, J. Cross-problem learning for solving vehicle routing problems. In IJCAI, 2024.
 
