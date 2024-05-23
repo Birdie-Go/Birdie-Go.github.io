@@ -123,7 +123,7 @@ $$
 \min_{\Theta}\mathcal{L}=\mathcal{L}_\alpha+\alpha\mathcal{L}_\beta
 $$
 
-其中，$\mathcal{L}_{\alpha}$ 表示原有的VRP求解器中REINFORCE的损失，$\mathcal{L}_\beta$​ 表示关于MoEs的损失（这部分在附件）。$\alpha=0.01$​。
+其中，$\mathcal{L}_{\alpha}$ 表示原有的VRP求解器中REINFORCE的损失，$\mathcal{L}_{\beta}$​ 表示关于MoEs的损失（这部分在附件）。$\alpha=0.01$​。
 
 ![image-20240516203124788]({{site.url}}/img/2024-5-16-MVMOE-Multi-Task-Vehicle-Routing-Solverwith-Mixture-of-Experts/image-20240516203124788.png)
 
