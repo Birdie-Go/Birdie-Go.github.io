@@ -39,13 +39,13 @@ MUSLA引入了一种新颖的 one-step look-ahead 方法来收集有关约束边
 
 ### 问题
 
-图 $\mathcal{G}=(V,E)$，点集 $V=\lbrace 0,1,\cdots,n\rbrace$，边集 $E\sub V\times V$。节点坐标 $a_i$，时间窗 $[t_i^s,t_i^e]$。边 $L_{i,j}=\mid\mid a_i-a_j\mid\mid_2$。解 $X=\left\{x_0, x_1, x_2, \ldots, x_n\right\}$。
+图 $\mathcal{G}=(V,E)$，点集 $V=\lbrace 0,1,\cdots,n\rbrace$，边集 $E\subset V\times V$。节点坐标 $a_i$，时间窗 $[t_i^s,t_i^e]$。边 $L_{i,j}=\mid\mid a_i-a_j\mid\mid_2$。解 $X=\lbrace x_0, x_1, x_2, \ldots, x_n\rbrace$。
 
 目标函数：
 
 $$
 \begin{gathered}
-\min _{X=\left\{x_0, x_1, x_2, \ldots, x_n\right\}} L_{x_n, x_0}+\sum_{i=0}^{n-1} L_{x_i, x_{i+1}} \\
+\min _{X=\lbrace x_0, x_1, x_2, \ldots, x_n\rbrace } L_{x_n, x_0}+\sum_{i=0}^{n-1} L_{x_i, x_{i+1}} \\
 \text { s.t. } t_{x_i}^s \leq t_i \leq t_{x_i}^e
 \end{gathered}
 $$
@@ -54,7 +54,7 @@ $$
 
 ### 监督学习
 
-通过 $p(X\mid g)=\Pi_{i=0}^{n-1}p(x_{i+1}\mid X_{0:i},g)$ 得到 $X=\left\{x_0, x_1, x_2, \ldots, x_n\right\}$，$g$ 是实例。
+通过 $p(X\mid g)=\Pi_{i=0}^{n-1}p(x_{i+1}\mid X_{0:i},g)$ 得到 $X=\lbrace x_0, x_1, x_2, \ldots, x_n\rbrace$，$g$ 是实例。
 
 最大似然估计
 
@@ -92,7 +92,7 @@ $$
 
 #### One-Step Look-Ahead（OSLA）
 
-已有 $X=\left\{x_0, \ldots, x_i\right\}$，迭代所有未访问过的 $x'$ 去构造 $X'=\left\{x_0, \ldots, x_i,x'\right\}$，并收集信息 $I^d_{+1}(X',g)$，其中 $x''\in V\setminus X'$。$I^d_{+1}$ 会作为动态信息帮助 $x'$ 的选择。
+已有 $X=\lbrace x_0, \ldots, x_i\rbrace $，迭代所有未访问过的 $x'$ 去构造 $X'=\lbrace x_0, \ldots, x_i,x'\rbrace $，并收集信息 $I^d_{+1}(X',g)$，其中 $x''\in V\setminus X'$。$I^d_{+1}$ 会作为动态信息帮助 $x'$ 的选择。
 
 更详细地说，OSLA会包含两类value。
 
@@ -107,7 +107,7 @@ One-Step 有助于了解约束边界，但不够。因此提出 MUSLA。
 
 未来信息中，只收集专家选择概率最高的 $k$ 个节点 $x'$ 的未来信息。
 
-使用 $\pi_\theta^{+1}$ 作为专家策略的近似，连续构造 $m$ 步得到 $\tilde{X}^{\prime}=\left\{x_0, \ldots, x_i, x^{\prime}, \tilde{x}_{i+2}, \ldots, \tilde{x}_{i+1+m}\right\}$​。
+使用 $\pi_\theta^{+1}$ 作为专家策略的近似，连续构造 $m$ 步得到 $\tilde{X}^{\prime}=\lbrace x_0, \ldots, x_i, x^{\prime}, \tilde{x}_{i+2}, \ldots, \tilde{x}_{i+1+m}\rbrace $​。
 
 在文章中，$k=5,m=1$，即通过动态信息 $I^d,I_{+1}^d,I_{+2}^d$ 作为数据增强，学习策略 $\pi_\theta^{+2}(x',I^d,I_{+1}^d,I_{+2}^d)$。
 
