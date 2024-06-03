@@ -36,7 +36,7 @@ MinMax Multiple Travelling Salesman Problem(mTSP)是一类重要的组合优化�
 
 - 在上述DAN的基础上引入了类型感知的图注意，并提出了一种新的构造方法，可以有效地提取图中的特征。
 
-  Cao, Y.; Sun, Z.; and Sartoretti, G. 2021. DAN: Decentralized Attention-based Neural Network to Solve the MinMax Multiple Traveling Salesman Problem. arXiv preprint arXiv:2109.04205.
+   Park, J.; Bakhtiyar, S.; and Park, J. 2021. ScheduleNet: Learn to solve multi-agent scheduling problems with reinforcement learning. arXiv preprint arXiv:2106.03051.
 
 这些基于RL的方法具有更快的速度和更强的泛化能力，但求解质量存在一定差距。
 
