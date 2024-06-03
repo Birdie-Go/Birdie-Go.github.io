@@ -4,7 +4,7 @@ title:      Generalize a Small Pre-trained Model to Arbitrarily Large TSP Instan
 subtitle:   AAAI2021 分支热图预测 + MCTS
 date:       2024/2/29
 author:     Birdie
-header-img: img/post_header.jpg
+header-img: img/post_header_sr.jpg
 catalog: true
 tags:
     - 论文阅读

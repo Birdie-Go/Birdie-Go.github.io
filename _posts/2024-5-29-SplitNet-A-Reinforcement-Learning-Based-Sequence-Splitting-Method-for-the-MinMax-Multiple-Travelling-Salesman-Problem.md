@@ -4,7 +4,7 @@ title:      SplitNet A Reinforcement Learning Based Sequence Splitting Method fo
 subtitle:   AAAI2023 从TSP重构MinMax mTSP
 date:       2024/5/29
 author:     Birdie
-header-img: img/post_header.jpg
+header-img: img/post_header_sr.jpg
 catalog: true
 tags:
     - 论文阅读

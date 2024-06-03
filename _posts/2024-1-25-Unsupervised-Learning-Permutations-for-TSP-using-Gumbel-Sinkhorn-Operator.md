@@ -4,7 +4,7 @@ title:      Unsupervised Learning Permutations for TSP using Gumbel-Sinkhorn Ope
 subtitle:   NIPS23 学习置换 + 不同分布的泛化 + 理论解释
 date:       2024/1/25
 author:     Birdie
-header-img: img/post_header.jpg
+header-img: img/post_header_sr.jpg
 catalog: true
 tags:
     - 论文阅读

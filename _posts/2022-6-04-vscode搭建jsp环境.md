@@ -4,7 +4,7 @@ title:      vscode搭建jsp环境
 subtitle:   含泪总结七个小时的教训
 date:       2022/6/04
 author:     Birdie
-header-img: img/post_header.jpg
+header-img: img/post_header_sr.jpg
 catalog: true
 tags:
     - JSP

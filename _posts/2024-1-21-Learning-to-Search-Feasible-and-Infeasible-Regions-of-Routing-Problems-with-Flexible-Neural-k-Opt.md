@@ -4,7 +4,7 @@ title:      Learning to Search Feasible and Infeasible Regions of Routing Proble
 subtitle:   NIPS23 k-opt learn to imporve + mask优化不可行探索 + 双流解码器
 date:       2024/1/21
 author:     Birdie
-header-img: img/post_header.jpg
+header-img: img/post_header_sr.jpg
 catalog: true
 tags:
     - 论文阅读

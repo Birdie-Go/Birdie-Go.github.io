@@ -4,7 +4,7 @@ title:      Virginia加密
 subtitle:   信息安全技术
 date:       2022/5/02
 author:     Birdie
-header-img: img/post_header.jpg
+header-img: img/post_header_sr.jpg
 catalog: true
 tags:
     - 信息安全

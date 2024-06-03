@@ -4,7 +4,7 @@ title:      一些JavaScript的应用
 subtitle:   专业技术综合实践
 date:       2022/5/10
 author:     Birdie
-header-img: img/post_header.jpg
+header-img: img/post_header_sr.jpg
 catalog: true
 tags:
     - JavaScript

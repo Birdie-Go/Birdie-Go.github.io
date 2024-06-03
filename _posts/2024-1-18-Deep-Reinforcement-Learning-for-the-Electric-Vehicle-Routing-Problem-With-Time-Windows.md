@@ -4,7 +4,7 @@ title:      Deep Reinforcement Learning for the Electric Vehicle Routing Problem
 subtitle:   EVRPTW
 date:       2024/1/18
 author:     Birdie
-header-img: img/post_header.jpg
+header-img: img/post_header_sr.jpg
 catalog: true
 tags:
     - 论文阅读

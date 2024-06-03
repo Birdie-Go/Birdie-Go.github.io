@@ -4,7 +4,7 @@ title:      Combinatorial Optimization with Policy Adaptation using Latent Space
 subtitle:   NIPS23 潜在空间采样学习+推理时候搜索
 date:       2024/1/17
 author:     Birdie
-header-img: img/post_header.jpg
+header-img: img/post_header_sr.jpg
 catalog: true
 tags:
     - 论文阅读

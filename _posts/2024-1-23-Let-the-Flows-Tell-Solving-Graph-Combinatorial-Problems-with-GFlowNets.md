@@ -4,7 +4,7 @@ title:      Let the Flows Tell Solving Graph Combinatorial Problems with GFlowNe
 subtitle:   NIPS23 GFlowNets
 date:       2024/1/23
 author:     Birdie
-header-img: img/post_header.jpg
+header-img: img/post_header_sr.jpg
 catalog: true
 tags:
     - 论文阅读

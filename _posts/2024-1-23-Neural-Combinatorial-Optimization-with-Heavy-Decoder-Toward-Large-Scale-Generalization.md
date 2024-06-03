@@ -4,7 +4,7 @@ title:      Neural Combinatorial Optimization with Heavy Decoder-Toward Large Sc
 subtitle:   NIPS23 重解码轻编码 + 迭代重构局部解改进
 date:       2024/1/23
 author:     Birdie
-header-img: img/post_header.jpg
+header-img: img/post_header_sr.jpg
 catalog: true
 tags:
     - 论文阅读
