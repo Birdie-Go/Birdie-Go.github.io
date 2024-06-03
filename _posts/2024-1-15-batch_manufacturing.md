@@ -4,7 +4,7 @@ title:      batch manufacturing
 subtitle:   随机过程
 date:       2024/1/15
 author:     Birdie
-header-img: img/post_header_sr.jpg
+header-img: img/post_header.jpg
 catalog: true
 tags:
     - 随机过程

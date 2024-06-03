@@ -4,7 +4,7 @@ title:      EFFICIENT TRAINING OF MULTI-TASK COMBINAROTIAL NEURAL SOLVER WITH MU
 subtitle:   多臂赌博机 多任务神经组合优化求解器
 date:       2024/5/15
 author:     Birdie
-header-img: img/post_header_sr.jpg
+header-img: img/post_header.jpg
 catalog: true
 tags:
     - 论文阅读

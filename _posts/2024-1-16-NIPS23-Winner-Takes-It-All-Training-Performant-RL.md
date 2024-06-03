@@ -4,7 +4,7 @@ title:      Winner Takes It All-Training Performant RL Populations for Combinato
 subtitle:   NIPS23 多智能体（种群）学习
 date:       2024/1/16
 author:     Birdie
-header-img: img/post_header_sr.jpg
+header-img: img/post_header.jpg
 catalog: true
 tags:
     - 论文阅读

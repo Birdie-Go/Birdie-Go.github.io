@@ -4,7 +4,7 @@ title:      DeepACO Neural-enhanced Ant Systems for Combinatorial Optimization
 subtitle:   NIPS23 神经蚁群系统 构造+局部搜索 泛用的元启发式
 date:       2024/1/20
 author:     Birdie
-header-img: img/post_header_sr.jpg
+header-img: img/post_header.jpg
 catalog: true
 tags:
     - 论文阅读

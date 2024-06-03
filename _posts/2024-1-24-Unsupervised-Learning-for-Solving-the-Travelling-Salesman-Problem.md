@@ -4,7 +4,7 @@ title:      Unsupervised Learning for Solving the Travelling Salesman Problem
 subtitle:   NIPS23 SAG(GNN) + 带有local search的树搜索
 date:       2024/1/24
 author:     Birdie
-header-img: img/post_header_sr.jpg
+header-img: img/post_header.jpg
 catalog: true
 tags:
     - 论文阅读

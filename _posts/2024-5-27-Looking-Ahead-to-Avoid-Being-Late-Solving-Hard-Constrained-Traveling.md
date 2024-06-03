@@ -4,7 +4,7 @@ title:      Looking Ahead to Avoid Being Late Solving Hard-Constrained Traveling
 subtitle:   Arxiv
 date:       2024/5/27
 author:     Birdie
-header-img: img/post_header_sr.jpg
+header-img: img/post_header.jpg
 catalog: true
 tags:
     - 论文阅读

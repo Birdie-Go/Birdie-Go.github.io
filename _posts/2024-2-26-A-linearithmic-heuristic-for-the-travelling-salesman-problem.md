@@ -4,7 +4,7 @@ title:      A linearithmic heuristic for the travelling salesman problem
 subtitle:   EJOR2021 分治求解TSP
 date:       2024/2/26
 author:     Birdie
-header-img: img/post_header_sr.jpg
+header-img: img/post_header.jpg
 catalog: true
 tags:
     - 论文阅读

@@ -4,7 +4,7 @@ title:      个人所得税PersonalTax
 subtitle:   在编译原理课上熟悉软件工程
 date:       2022/5/09
 author:     Birdie
-header-img: img/post_header_sr.jpg
+header-img: img/post_header.jpg
 catalog: true
 tags:
     - 软件工程

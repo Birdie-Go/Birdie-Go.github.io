@@ -4,7 +4,7 @@ title:      Ensemble-based Deep Reinforcement Learning for Vehicle Routing Probl
 subtitle:   NIPS23 集成学习提高泛化性
 date:       2024/1/19
 author:     Birdie
-header-img: img/post_header_sr.jpg
+header-img: img/post_header.jpg
 catalog: true
 tags:
     - 论文阅读
