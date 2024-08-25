@@ -104,14 +104,14 @@ VRP两个扩展：
 
 - Observation states：DU-VRP决策在真实地图中动态执行，智能体必须根据一组观察结果推断出一组可能状态的概率分布。
 
-  > The DU-VRP decisions are dynamically executed in a real map, in which the demand of customers is inaccessible for the agents indeed. As a result, the agent has to infer a probability distribution over the set of possible states based on a set of observations. The observation states are associated with an observed current customers' location $\tilde{\mathcal{M}}_t$ and observed customers' demands $\tilde{\mathcal{D}}_t$ at time step $t$, defined as $O_t=\left\{\left(\tilde{\mathcal{M}}_t, \tilde{\mathcal{D}}_t\right) \mid\right.$ $\tilde{\mathcal{M}}_t=\left\{\tilde{m}_{i k}^t, i, k=1, \ldots, n\right\}, \tilde{\mathcal{D}}_t=\left\{\tilde{d}_i^t, i=1, \ldots, n\right\}$ where $\tilde{m}_{i k}^t$ is the observed distance between new customer $i$ and vehicle $k$ at time step $t$, and $\tilde{d}_i^t$ is the observed demand of customer $i$ at time step $t$. Thus, the whole observation space is defined as $\mathcal{O}=\left\{O_t, t=\right.$ $1, \ldots, T\}$
+  > The DU-VRP decisions are dynamically executed in a real map, in which the demand of customers is inaccessible for the agents indeed. As a result, the agent has to infer a probability distribution over the set of possible states based on a set of observations. The observation states are associated with an observed current customers' location $\tilde{\mathcal{M}}_t$ and observed customers' demands $\tilde{\mathcal{D}}_t$ at time step $t$, defined as $O_t=\left\lbrace\left(\tilde{\mathcal{M}}_t, \tilde{\mathcal{D}}_t\right) \mid\right.$ $\tilde{\mathcal{M}}_t=\left\lbrace\tilde{m}_{i k}^t, i, k=1, \ldots, n\right\rbrace, \tilde{\mathcal{D}}_t=\left\lbrace\tilde{d}_i^t, i=1, \ldots, n\right\rbrace$ where $\tilde{m}_{i k}^t$ is the observed distance between new customer $i$ and vehicle $k$ at time step $t$, and $\tilde{d}_i^t$ is the observed demand of customer $i$ at time step $t$. Thus, the whole observation space is defined as $\mathcal{O}=\left\lbraceO_t, t=\right.$ $1, \ldots, T\rbrace$
 
 - Action：$Y_{t+1}$被定义为一个指针，指向可用客户的动作。动作顺序记为$Y = \lbrace Y_1\cdots, Y_t\rbrace$ 记录动作的过去信息。
 - 状态转移 $\mathbb{T(s'\mid s,y)}$
 - 观察转移概率 $p(o'\mid s,y)$
 - 观察奖励函数：奖励函数定义为 $R\left(O_{t+1}, Y_{t+1}\right)=V\left(O_{t+1}, Y_{t+1}\right)-P\left(O_{t+1}, Y_{t+1}\right)$
   -  $V$ 是完全观察奖励函数，$\left(O_{t+1}, Y_{t+1}\right)=\sum_{k=1}^m \sum_{i=1}^n u_{i k}-\sum_{k=1}^m \sum_{i=1}^n \sum_{j=1}^n c_{i j} x_{i j k}$，作为满足需求的奖励和行动中两个顾客之间的距离的负值来计算的（前面那部分的意义是什么，鼓励服务更多的用户吗）
-  - $P$ 是部分观察惩罚函数，$P\left(O_{t+1}, Y_{t+1}\right)=C_1 \sum_{k=1}^m\max \left\{\sum_{i=1}^n d_i \sum_{j=1}^n x_{i j k}-q_k, 0\right\}$，其中，$q_k$ 和 $d_i$ 分别表示车辆 $k$ 的容量和客户 $i$ 的需求。在这个惩罚函数中，系数为 $C_1$ 的惩罚项保证了每辆车的容量约束。即时奖励 $R_t$ 是在车辆采取行动 $y_{t+1}$ 从 $O_t$ 移动到 $O_{t+1}$ 后产生的。
+  - $P$ 是部分观察惩罚函数，$P\left(O_{t+1}, Y_{t+1}\right)=C_1 \sum_{k=1}^m\max \left\lbrace\sum_{i=1}^n d_i \sum_{j=1}^n x_{i j k}-q_k, 0\right\rbrace$，其中，$q_k$ 和 $d_i$ 分别表示车辆 $k$ 的容量和客户 $i$ 的需求。在这个惩罚函数中，系数为 $C_1$ 的惩罚项保证了每辆车的容量约束。即时奖励 $R_t$ 是在车辆采取行动 $y_{t+1}$ 从 $O_t$ 移动到 $O_{t+1}$ 后产生的。
 - 策略：$\pi$，控制在每个时间步处理所有客户请求的行程。
 - 状态价值函数：$V_\pi(o)=\mathbb{E}_\pi [\sum_{k=0}^{\infty} R_{t+k+1} \mid O_t=o]$，它是在状态 $o$ 开始执行策略 $\pi$ 时的期望收益。
 - 动作价值函数：$\mathbb{Q}(o, y)=\mathbb{E}\left[R_{t+1}+\right. \left.v\left(O_{t+1}\right) \mid O_t=o, Y_t=y\right]$，在状态 $o$ 下采取动作 $y$ 的期望收益
