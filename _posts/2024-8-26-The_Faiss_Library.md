@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      The Faiss Library
-subtitle:   向量检索
+subtitle:   一个用于向量检索的C++库
 date:       2024/8/26
 author:     Birdie
 header-img: img/post\_header.jpg
@@ -74,7 +74,7 @@ Faiss的基本结构是索引。索引可以存储一些逐步添加到索引中
 
 ## 一个向量搜索库的性能轴
 
-给定一组数据库向量 $\left\{x_i, i=1 . . N\right\} \subset \mathbb{R}^d$ 和一个查询向量 $q \in \mathbb{R}^d$，计算
+给定一组数据库向量 $\left\lbarce x_i, i=1 . . N\right\rbrace \subset \mathbb{R}^d$ 和一个查询向量 $q \in \mathbb{R}^d$，计算
 
 $$
 n=\underset{n=1 . . N}{\operatorname{argmin}}\left\|q-x_n\right\|
@@ -83,13 +83,17 @@ $$
 这可以通过迭代所有数据库向量的直接算法来计算：蛮力搜索。
 
 一个稍微更一般更复杂的运算是计算 $q$ 的 $k$ 个近邻（Faiss的 `search` 方法给出的结果）：
+
 $$
 \left(n_1, \ldots, n_k\right)=\underset{n=1 . . N}{k-\underset{N}{\operatorname{argmin}}\left\|q-x_n\right\|}
 $$
+
 Faiss 还有 `range_search` 方法，查找到查询的某个距离 $\varepsilon$ 内的所有元素：
+
 $$
-R=\left\{n=1 . . N \text { s.t. }\left\|q-x_n\right\| \leq \varepsilon\right\}
+R=\left\lbrace n=1 . . N \text { s.t. }\left\|q-x_n\right\| \leq \varepsilon\right\rbrace
 $$
+
 Faiss中最常用的距离如下
 
 ![image-20240820191452994]({{site.url}}/img/2024-8-26-The_Faiss_Library/image-20240820191452994.png)
