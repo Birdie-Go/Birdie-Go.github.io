@@ -74,7 +74,7 @@ Faiss的基本结构是索引。索引可以存储一些逐步添加到索引中
 
 ## 一个向量搜索库的性能轴
 
-给定一组数据库向量 $\left\lbarce x_i, i=1 . . N\right\rbrace \subset \mathbb{R}^d$ 和一个查询向量 $q \in \mathbb{R}^d$，计算
+给定一组数据库向量 $\left\lbrace x_i, i=1 . . N\right\rbrace \subset \mathbb{R}^d$ 和一个查询向量 $q \in \mathbb{R}^d$，计算
 
 $$
 n=\underset{n=1 . . N}{\operatorname{argmin}}\left\|q-x_n\right\|
