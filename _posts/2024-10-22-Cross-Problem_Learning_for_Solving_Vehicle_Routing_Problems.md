@@ -115,7 +115,7 @@ IJCAI 2024
 适配器网络在内部调优中包含两个线性层，中间使用LeakyReLU（LR）激活函数，形式为：
 
 $$
-\operatorname{APT}\_{\text {in }}\left(h\_i\right)=\mathbf{W}\_1^{\mathrm{in}} \cdot \operatorname{LR}\left(\mathbf{W}\_0^{\mathrm{in}} \cdot h\_i+\mathbf{b}\_0^{\mathrm{in}}\right)+\mathbf{b}\_1^{\mathrm{in}},
+\operatorname{APT}_{\text {in }}\left(h_i\right)=\mathbf{W}_1^{\mathrm{in}} \cdot \operatorname{LR}\left(\mathbf{W}_0^{\mathrm{in}} \cdot h_i+\mathbf{b}_0^{\mathrm{in}}\right)+\mathbf{b}_1^{\mathrm{in}},
 $$
 
 其中$i \in\lbrace 0, \ldots, n\rbrace$为节点索引。设置可训练参数$\mathbf{W}\_0^{\text {in }} \in \mathbb{R}^{d \times(d / 2)}；\mathbf{W}\_1^{\text {in }} \in \mathbb{R}^{(d / 2) \times d}；\mathbf{b}\_0^{\text {in }} \in \mathbb{R}^{d / 2}$；$\mathbf{b}\_1^{\text {in }} \in \mathbb{R}^d$，这些参数均匀初始化在范围$(-1 / \sqrt{d}, 1 / \sqrt{d})$。将上述适配器网络放置在自注意力层和全连接层之后，正如图2(a)所示。
@@ -126,13 +126,13 @@ $$
 
 $$
 \begin{gathered}
-h\_i^{\prime}=\mathbf{B N}\left(h\_i+\mathbf{M S L}\_i\left(h\_0, \ldots, h\_n\right)\right), \\
-h\_i^{\prime \prime}=\mathbf{B N}\left(h\_i^{\prime}+\mathbf{F L}\left(h\_i^{\prime}\right)\right),
+h_i^{\prime}=\mathbf{B N}\left(h_i+\mathbf{M S L}_i\left(h_0, \ldots, h_n\right)\right), \\
+h_i^{\prime \prime}=\mathbf{B N}\left(h_i^{\prime}+\mathbf{F L}\left(h_i^{\prime}\right)\right),
 \end{gathered}
 $$
 
 $$
-\mathrm{APT}\_{\mathrm{si}}\left(h\_i^{\prime \prime}\right)=\mathbf{B N}\left(\mathrm{LR}\left(\mathbf{W}\_1^{\mathrm{si}} \cdot \mathbf{B N}\left(\mathbf{L R}\left(\mathbf{W}\_0^{\mathrm{si}} \cdot h\_i^{\prime \prime}+\mathbf{b}\_0^{\mathrm{si}}\right)\right)+\mathbf{b}\_1^{\mathrm{si}}\right)\right),
+\mathrm{APT}_{\mathrm{si}}\left(h_i^{\prime \prime}\right)=\mathbf{B N}\left(\mathrm{LR}\left(\mathbf{W}_1^{\mathrm{si}} \cdot \mathbf{B N}\left(\mathbf{L R}\left(\mathbf{W}_0^{\mathrm{si}} \cdot h_i^{\prime \prime}+\mathbf{b}_0^{\mathrm{si}}\right)\right)+\mathbf{b}_1^{\mathrm{si}}\right)\right),
 $$
 
 其中$i \in\lbrace0, \ldots, n\rbrace$为节点索引。在前两个公式中，在AM的编码器中使用类似的神经结构（执行一次而不是$L$次），通过多头自注意力层（MSL）和全连接层（FL）处理节点嵌入，之后跟随跳跃连接和批归一化（BN）。在后一个公式中，节点嵌入进一步通过线性层、LeakyReLU激活和批归一化演变，其中$\mathbf{W}\_0^{\text {si }}, \mathbf{W}\_1^{\text {si }} \in \mathbb{R}^{d \times d}；\mathbf{b}\_0^{\text {si }}, \mathbf{b}\_1^{\text {si }} \in \mathbb{R}^d$是可训练参数，并且均匀初始化。该适配器网络位于编码器旁边，将初始节点嵌入$\left\lbraceh\_i^0\right\rbrace\_{i=0}^n$演变为$\left\lbracez\_i^s\right\rbrace\_{i=0}^n$，这些嵌入被加到编码器的输出中（保持主干权重不变），如图2(b)所示。
@@ -142,7 +142,7 @@ $$
 受到低秩适配（LoRA）启发，设计了一种低秩分解来调整预训练变换器中任何矩阵的输出，
 
 $$
-\operatorname{APT}\_{\mathrm{lo}}\left(h\_i\right)=\mathbf{W}\_p \cdot h\_i+\mathbf{B}\_p \mathbf{A}\_p \cdot h\_i
+\operatorname{APT}_{\mathrm{lo}}\left(h_i\right)=\mathbf{W}_p \cdot h_i+\mathbf{B}_p \mathbf{A}_p \cdot h_i
 $$
 
 其中$i \in\lbrace0, \ldots, n\rbrace$为节点索引。$\mathbf{W}\_p \in \mathbb{R}^{d \times d}$表示主干Transformer中用于TSP的预训练权重矩阵；$\mathbf{B}\_p \in \mathbb{R}^{d \times r}$和$\mathbf{A}\_p \in \mathbb{R}^{r \times d}$是两个可训练矩阵，$r=2 \ll d$，我们将其初始化为0和高斯分布$(0,1)$。应用公式来调整预训练Transformer编码器中查询、键和值矩阵的输出，如图2(c)所示。

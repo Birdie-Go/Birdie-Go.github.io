@@ -64,8 +64,8 @@ Ensemble of Local and Global policies (ELG)，包含两个基本策略：一个�
 - 动作：局部策略输出用于选择下一个要访问的邻居节点的分数 $\boldsymbol{u}\_{\text{local}}$，其中节点 $n\_i$ 的分数可以表示为
 
   $$
-  u\_{\text{local}}^i=\left\lbrace\begin{array}{c}
-  \left(g\_{\boldsymbol{\theta}}\left(s\_t\right)\right)\_i, \text{ 如果 } n\_i \in \mathcal{N}\_K\left(c\_t\right), \\
+  u_{\text{local}}^i=\left\lbrace\begin{array}{c}
+  \left(g_{\boldsymbol{\theta}}\left(s_t\right)\right)_i, \text{ 如果 } n_i \in \mathcal{N}_K\left(c_t\right), \\
   0, \text{ 否则 }
   \end{array}\right.
   $$
@@ -90,9 +90,9 @@ POMO
 考虑到大多数最优动作都包含在局部邻居节点中，利用归一化的距离对全局策略进行惩罚。距离惩罚鼓励策略偏向于选择附近的节点，并对选择远程节点保持谨慎，这在实际应用中有助于泛化。与之前直接将距离值作为偏置的方法不同，本文提出通过 $\mathcal{N}\_K\left(c\_t\right)$ 中最大的 $\rho\_i$ 将距离 $\rho\_i$ 归一化到 $[0,1]$，并对非邻居节点添加一个固定惩罚 $\xi (\xi \geq 1)$，即：
 
 $$
-\tilde{u}\_{\text {global }}^i=\left\lbrace\begin{aligned}
-u\_{\text {global }}^i-\frac{\rho\_i}{\max \left\lbrace\rho\_i \mid n\_i \in \mathcal{N}\_K\left(c\_t\right)\right\rbrace}, & \text { if } n\_i \in \mathcal{N}\_K\left(c\_t\right), \\
-u\_{\text {global }}^i-\xi, & \text { otherwise }
+\tilde{u}_{\text {global }}^i=\left\lbrace\begin{aligned}
+u_{\text {global }}^i-\frac{\rho_i}{\max \left\lbrace\rho_i \mid n_i \in \mathcal{N}_K\left(c_t\right)\right\rbrace}, & \text { if } n_i \in \mathcal{N}_K\left(c_t\right), \\
+u_{\text {global }}^i-\xi, & \text { otherwise }
 \end{aligned}\right.
 $$
 
@@ -102,11 +102,11 @@ $\mathcal{N}\_K\left(c\_t\right)$ 包含当前节点 $c\_t$ 的 $K$ 个最近有
 
 $$
 \begin{aligned}
-u\_{\text{masked}}^i & = \left\lbrace\begin{aligned}
-C \cdot \tanh \left(\tilde{u}\_{\text{global}}^i + u\_{\text{local}}^i\right), & \text{如果节点 } n\_i \text{ 有效,} \\
+u_{\text{masked}}^i & = \left\lbrace\begin{aligned}
+C \cdot \tanh \left(\tilde{u}_{\text{global}}^i + u_{\text{local}}^i\right), & \text{如果节点 } n_i \text{ 有效,} \\
 -\infty, & \text{否则},
 \end{aligned}\right. \\
-\boldsymbol{\pi}\_{\text{ens}} & = \operatorname{softmax}\left(\boldsymbol{u}\_{\text{masked}}\right) .
+\boldsymbol{\pi}_{\text{ens}} & = \operatorname{softmax}\left(\boldsymbol{u}_{\text{masked}}\right) .
 \end{aligned}
 $$
 
@@ -117,7 +117,7 @@ $$
 在实践中，首先对全局策略进行距离惩罚的预训练，持续 $T\_1$ 轮，因为全局策略的状态和动作空间比局部策略更复杂。在联合训练阶段，使用策略梯度方法直接训练集成策略 $\pi\_{\text{ens}}$，持续 $T\_2$ 轮，该策略包括来自全局策略的可训练参数 $\tilde{\boldsymbol{\theta}}$ 和来自局部策略的 $\boldsymbol{\theta}$。按照 POMO，从不同的起始节点进行多次回放，在一次前馈中获得多条轨迹，并利用 REINFORCE 算法与共享基线估计预期回报 $J$ 的梯度。具体而言，多次回放的平均奖励作为 REINFORCE 基线，梯度 $\nabla\_{\tilde{\boldsymbol{\theta}}, \boldsymbol{\theta}} J(\tilde{\boldsymbol{\theta}}, \boldsymbol{\theta})$ 通过以下公式估计：
 
 $$
-\frac{1}{N \cdot B} \sum\_{i=1}^B \sum\_{j=1}^N\left(R\_{i, j}-\frac{1}{N} \sum\_{j=1}^N R\_{i, j}\right) \nabla\_{\tilde{\boldsymbol{\theta}}, \boldsymbol{\theta}} \log \boldsymbol{\pi}\_{\mathrm{ens}}\left(\boldsymbol{\tau}\_{i, j}\right),
+\frac{1}{N \cdot B} \sum_{i=1}^B \sum_{j=1}^N\left(R_{i, j}-\frac{1}{N} \sum_{j=1}^N R_{i, j}\right) \nabla_{\tilde{\boldsymbol{\theta}}, \boldsymbol{\theta}} \log \boldsymbol{\pi}_{\mathrm{ens}}\left(\boldsymbol{\tau}_{i, j}\right),
 $$
 
 其中 $N$ 是轨迹的数量，等于节点的数量，$B$ 是批量大小，$R\_{i, j}$ 是第 $i$ 个实例上第 $j$ 条轨迹 $\boldsymbol{\tau}_{i, j}$ 的奖励。
