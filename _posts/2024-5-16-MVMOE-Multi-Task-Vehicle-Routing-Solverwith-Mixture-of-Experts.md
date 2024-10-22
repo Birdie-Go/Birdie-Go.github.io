@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      MVMoE Multi-Task Vehicle Routing Solver with Mixture-of-Experts
-subtitle:   ICLR2024 混合专家层
+subtitle:   ICML2024 混合专家层
 date:       2024/5/16
 author:     Birdie
 header-img: img/post_header.jpg
@@ -9,7 +9,7 @@ catalog: true
 tags:
     - 论文阅读
     - 组合优化
-    - ICLR
+    - ICML
 ---
 
 
