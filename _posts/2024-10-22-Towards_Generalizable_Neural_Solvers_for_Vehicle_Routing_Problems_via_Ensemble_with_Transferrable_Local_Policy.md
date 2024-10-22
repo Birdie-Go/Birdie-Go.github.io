@@ -59,18 +59,18 @@ Ensemble of Local and Global policies (ELG)，包含两个基本策略：一个�
 
 在求解vrp时，一个常见的观察结果是，最优动作（即下一个节点）通常包含在当前节点的一个小局部邻域中，并且这些局部邻域的模式具有跨各种节点分布和尺度可转移的潜力。受这些事实的启发，本文提出设计一个局部MDP公式，将状态和动作空间限制在局部邻域，以获得更好的泛化性能。
 
-- 状态：状态空间被缩减到一个小的局部邻域 $\mathcal{N}\_K\left(c\_t\right)$，该邻域包含当前节点 $c\_t$ 的 $K$ 个最近的有效邻居节点。有效节点是指未被访问且满足约束的节点，例如，在车辆路径问题（CVRP）中的容量约束。直观上，局部状态表示策略在接下来的几步中需要解决的一个子问题。通过学习解决局部子问题，策略捕捉到了车辆路径问题的更多内在特征，这些特征可以在不同的问题实例中迁移。为了更好地表示局部状态的特征，我们利用以当前节点 $c\_t$ 为中心的极坐标 $\left(\rho\_i, \theta\_i\right)$ 来指示邻居节点的位置，其中 $i$ 是节点 $n\_i \in \mathcal{N}\_K\left(c\_t\right)$ 的索引。极坐标直接提供到 $c\_t$ 的相对距离（即边缘成本），我们可以通过 $\tilde{\rho}\_i=\rho\_i / \max \left\{\rho\_i \mid n\_i \in \mathcal{N}\_K\left(c\_t\right)\right\}$ 将所有的 $\rho\_i$ 归一化到 $[0,1]$。因此，所有邻居节点都位于单位球内。这种局部拓扑特征对节点分布和问题规模的变化不敏感。CVRP 的状态还包含节点需求 $\left\{\tilde{d}\_i \mid n\_i \in \mathcal{N}\_K\left(c\_t\right)\right\}$，按剩余容量 $Q\_{\text{remain}}$ 归一化，即 $\tilde{d}\_i=d\_i / Q\_{\text{remain}}$。因此，$Q\_{\text{remain}}$ 不再需要包含在状态中。
+- 状态：状态空间被缩减到一个小的局部邻域 $\mathcal{N}\_K\left(c\_t\right)$，该邻域包含当前节点 $c\_t$ 的 $K$ 个最近的有效邻居节点。有效节点是指未被访问且满足约束的节点，例如，在车辆路径问题（CVRP）中的容量约束。直观上，局部状态表示策略在接下来的几步中需要解决的一个子问题。通过学习解决局部子问题，策略捕捉到了车辆路径问题的更多内在特征，这些特征可以在不同的问题实例中迁移。为了更好地表示局部状态的特征，我们利用以当前节点 $c\_t$ 为中心的极坐标 $\left(\rho\_i, \theta\_i\right)$ 来指示邻居节点的位置，其中 $i$ 是节点 $n\_i \in \mathcal{N}\_K\left(c\_t\right)$ 的索引。极坐标直接提供到 $c\_t$ 的相对距离（即边缘成本），我们可以通过 $\tilde{\rho}\_i=\rho\_i / \max \left\lbrace\rho\_i \mid n\_i \in \mathcal{N}\_K\left(c\_t\right)\right\rbrace$ 将所有的 $\rho\_i$ 归一化到 $[0,1]$。因此，所有邻居节点都位于单位球内。这种局部拓扑特征对节点分布和问题规模的变化不敏感。CVRP 的状态还包含节点需求 $\left\lbrace\tilde{d}\_i \mid n\_i \in \mathcal{N}\_K\left(c\_t\right)\right\rbrace$，按剩余容量 $Q\_{\text{remain}}$ 归一化，即 $\tilde{d}\_i=d\_i / Q\_{\text{remain}}$。因此，$Q\_{\text{remain}}$ 不再需要包含在状态中。
 
 - 动作：局部策略输出用于选择下一个要访问的邻居节点的分数 $\boldsymbol{u}\_{\text{local}}$，其中节点 $n\_i$ 的分数可以表示为
 
   $$
-  u\_{\text{local}}^i=\left\{\begin{array}{c}
+  u\_{\text{local}}^i=\left\lbrace\begin{array}{c}
   \left(g\_{\boldsymbol{\theta}}\left(s\_t\right)\right)\_i, \text{ 如果 } n\_i \in \mathcal{N}\_K\left(c\_t\right), \\
   0, \text{ 否则 }
   \end{array}\right.
   $$
 
-  其中 $\boldsymbol{s}\_t=\left\{\left[\tilde{\rho}\_i, \theta\_i, \tilde{d}\_i\right] \mid n\_i \in \mathcal{N}\_K\left(c\_t\right)\right\}$ 适用于 CVRP（注意，需求 $\tilde{d}\_i$ 在旅行商问题（TSP）中被移除），$g\_{\boldsymbol{\theta}}$ 是一个参数化的神经网络。
+  其中 $\boldsymbol{s}\_t=\left\lbrace\left[\tilde{\rho}\_i, \theta\_i, \tilde{d}\_i\right] \mid n\_i \in \mathcal{N}\_K\left(c\_t\right)\right\rbrace$ 适用于 CVRP（注意，需求 $\tilde{d}\_i$ 在旅行商问题（TSP）中被移除），$g\_{\boldsymbol{\theta}}$ 是一个参数化的神经网络。
 
 本文提出的局部策略的优点可以概括为：
 
@@ -90,8 +90,8 @@ POMO
 考虑到大多数最优动作都包含在局部邻居节点中，利用归一化的距离对全局策略进行惩罚。距离惩罚鼓励策略偏向于选择附近的节点，并对选择远程节点保持谨慎，这在实际应用中有助于泛化。与之前直接将距离值作为偏置的方法不同，本文提出通过 $\mathcal{N}\_K\left(c\_t\right)$ 中最大的 $\rho\_i$ 将距离 $\rho\_i$ 归一化到 $[0,1]$，并对非邻居节点添加一个固定惩罚 $\xi (\xi \geq 1)$，即：
 
 $$
-\tilde{u}\_{\text {global }}^i=\left\{\begin{aligned}
-u\_{\text {global }}^i-\frac{\rho\_i}{\max \left\{\rho\_i \mid n\_i \in \mathcal{N}\_K\left(c\_t\right)\right\}}, & \text { if } n\_i \in \mathcal{N}\_K\left(c\_t\right), \\
+\tilde{u}\_{\text {global }}^i=\left\lbrace\begin{aligned}
+u\_{\text {global }}^i-\frac{\rho\_i}{\max \left\lbrace\rho\_i \mid n\_i \in \mathcal{N}\_K\left(c\_t\right)\right\rbrace}, & \text { if } n\_i \in \mathcal{N}\_K\left(c\_t\right), \\
 u\_{\text {global }}^i-\xi, & \text { otherwise }
 \end{aligned}\right.
 $$
@@ -102,7 +102,7 @@ $\mathcal{N}\_K\left(c\_t\right)$ 包含当前节点 $c\_t$ 的 $K$ 个最近有
 
 $$
 \begin{aligned}
-u\_{\text{masked}}^i & = \left\{\begin{aligned}
+u\_{\text{masked}}^i & = \left\lbrace\begin{aligned}
 C \cdot \tanh \left(\tilde{u}\_{\text{global}}^i + u\_{\text{local}}^i\right), & \text{如果节点 } n\_i \text{ 有效,} \\
 -\infty, & \text{否则},
 \end{aligned}\right. \\
