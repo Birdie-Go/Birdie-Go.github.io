@@ -59,18 +59,18 @@ Ensemble of Local and Global policies (ELG)，包含两个基本策略：一个�
 
 在求解vrp时，一个常见的观察结果是，最优动作（即下一个节点）通常包含在当前节点的一个小局部邻域中，并且这些局部邻域的模式具有跨各种节点分布和尺度可转移的潜力。受这些事实的启发，本文提出设计一个局部MDP公式，将状态和动作空间限制在局部邻域，以获得更好的泛化性能。
 
-- 状态：状态空间被缩减到一个小的局部邻域 $\mathcal{N}_K\left(c_t\right)$，该邻域包含当前节点 $c_t$ 的 $K$ 个最近的有效邻居节点。有效节点是指未被访问且满足约束的节点，例如，在车辆路径问题（CVRP）中的容量约束。直观上，局部状态表示策略在接下来的几步中需要解决的一个子问题。通过学习解决局部子问题，策略捕捉到了车辆路径问题的更多内在特征，这些特征可以在不同的问题实例中迁移。为了更好地表示局部状态的特征，我们利用以当前节点 $c_t$ 为中心的极坐标 $\left(\rho_i, \theta_i\right)$ 来指示邻居节点的位置，其中 $i$ 是节点 $n_i \in \mathcal{N}_K\left(c_t\right)$ 的索引。极坐标直接提供到 $c_t$ 的相对距离（即边缘成本），我们可以通过 $\tilde{\rho}_i=\rho_i / \max \left\{\rho_i \mid n_i \in \mathcal{N}_K\left(c_t\right)\right\}$ 将所有的 $\rho_i$ 归一化到 $[0,1]$。因此，所有邻居节点都位于单位球内。这种局部拓扑特征对节点分布和问题规模的变化不敏感。CVRP 的状态还包含节点需求 $\left\{\tilde{d}_i \mid n_i \in \mathcal{N}_K\left(c_t\right)\right\}$，按剩余容量 $Q_{\text{remain}}$ 归一化，即 $\tilde{d}_i=d_i / Q_{\text{remain}}$。因此，$Q_{\text{remain}}$ 不再需要包含在状态中。
+- 状态：状态空间被缩减到一个小的局部邻域 $\mathcal{N}\_K\left(c\_t\right)$，该邻域包含当前节点 $c\_t$ 的 $K$ 个最近的有效邻居节点。有效节点是指未被访问且满足约束的节点，例如，在车辆路径问题（CVRP）中的容量约束。直观上，局部状态表示策略在接下来的几步中需要解决的一个子问题。通过学习解决局部子问题，策略捕捉到了车辆路径问题的更多内在特征，这些特征可以在不同的问题实例中迁移。为了更好地表示局部状态的特征，我们利用以当前节点 $c\_t$ 为中心的极坐标 $\left(\rho\_i, \theta\_i\right)$ 来指示邻居节点的位置，其中 $i$ 是节点 $n\_i \in \mathcal{N}\_K\left(c\_t\right)$ 的索引。极坐标直接提供到 $c\_t$ 的相对距离（即边缘成本），我们可以通过 $\tilde{\rho}\_i=\rho\_i / \max \left\{\rho\_i \mid n\_i \in \mathcal{N}\_K\left(c\_t\right)\right\}$ 将所有的 $\rho\_i$ 归一化到 $[0,1]$。因此，所有邻居节点都位于单位球内。这种局部拓扑特征对节点分布和问题规模的变化不敏感。CVRP 的状态还包含节点需求 $\left\{\tilde{d}\_i \mid n\_i \in \mathcal{N}\_K\left(c\_t\right)\right\}$，按剩余容量 $Q\_{\text{remain}}$ 归一化，即 $\tilde{d}\_i=d\_i / Q\_{\text{remain}}$。因此，$Q\_{\text{remain}}$ 不再需要包含在状态中。
 
-- 动作：局部策略输出用于选择下一个要访问的邻居节点的分数 $\boldsymbol{u}_{\text{local}}$，其中节点 $n_i$ 的分数可以表示为
+- 动作：局部策略输出用于选择下一个要访问的邻居节点的分数 $\boldsymbol{u}\_{\text{local}}$，其中节点 $n\_i$ 的分数可以表示为
 
   $$
-  u_{\text{local}}^i=\left\{\begin{array}{c}
-  \left(g_{\boldsymbol{\theta}}\left(s_t\right)\right)_i, \text{ 如果 } n_i \in \mathcal{N}_K\left(c_t\right), \\
+  u\_{\text{local}}^i=\left\{\begin{array}{c}
+  \left(g\_{\boldsymbol{\theta}}\left(s\_t\right)\right)\_i, \text{ 如果 } n\_i \in \mathcal{N}\_K\left(c\_t\right), \\
   0, \text{ 否则 }
   \end{array}\right.
   $$
 
-  其中 $\boldsymbol{s}_t=\left\{\left[\tilde{\rho}_i, \theta_i, \tilde{d}_i\right] \mid n_i \in \mathcal{N}_K\left(c_t\right)\right\}$ 适用于 CVRP（注意，需求 $\tilde{d}_i$ 在旅行商问题（TSP）中被移除），$g_{\boldsymbol{\theta}}$ 是一个参数化的神经网络。
+  其中 $\boldsymbol{s}\_t=\left\{\left[\tilde{\rho}\_i, \theta\_i, \tilde{d}\_i\right] \mid n\_i \in \mathcal{N}\_K\left(c\_t\right)\right\}$ 适用于 CVRP（注意，需求 $\tilde{d}\_i$ 在旅行商问题（TSP）中被移除），$g\_{\boldsymbol{\theta}}$ 是一个参数化的神经网络。
 
 本文提出的局部策略的优点可以概括为：
 
@@ -87,40 +87,40 @@ POMO
 
 #### 全局策略的标准化距离惩罚
 
-考虑到大多数最优动作都包含在局部邻居节点中，利用归一化的距离对全局策略进行惩罚。距离惩罚鼓励策略偏向于选择附近的节点，并对选择远程节点保持谨慎，这在实际应用中有助于泛化。与之前直接将距离值作为偏置的方法不同，本文提出通过 $\mathcal{N}_K\left(c_t\right)$ 中最大的 $\rho_i$ 将距离 $\rho_i$ 归一化到 $[0,1]$，并对非邻居节点添加一个固定惩罚 $\xi (\xi \geq 1)$，即：
+考虑到大多数最优动作都包含在局部邻居节点中，利用归一化的距离对全局策略进行惩罚。距离惩罚鼓励策略偏向于选择附近的节点，并对选择远程节点保持谨慎，这在实际应用中有助于泛化。与之前直接将距离值作为偏置的方法不同，本文提出通过 $\mathcal{N}\_K\left(c\_t\right)$ 中最大的 $\rho\_i$ 将距离 $\rho\_i$ 归一化到 $[0,1]$，并对非邻居节点添加一个固定惩罚 $\xi (\xi \geq 1)$，即：
 
 $$
-\tilde{u}_{\text {global }}^i=\left\{\begin{aligned}
-u_{\text {global }}^i-\frac{\rho_i}{\max \left\{\rho_i \mid n_i \in \mathcal{N}_K\left(c_t\right)\right\}}, & \text { if } n_i \in \mathcal{N}_K\left(c_t\right), \\
-u_{\text {global }}^i-\xi, & \text { otherwise }
+\tilde{u}\_{\text {global }}^i=\left\{\begin{aligned}
+u\_{\text {global }}^i-\frac{\rho\_i}{\max \left\{\rho\_i \mid n\_i \in \mathcal{N}\_K\left(c\_t\right)\right\}}, & \text { if } n\_i \in \mathcal{N}\_K\left(c\_t\right), \\
+u\_{\text {global }}^i-\xi, & \text { otherwise }
 \end{aligned}\right.
 $$
 
-$\mathcal{N}_K\left(c_t\right)$ 包含当前节点 $c_t$ 的 $K$ 个最近有效邻居节点，这为归一化提供了良好的视角，使距离惩罚更具可扩展性。
+$\mathcal{N}\_K\left(c\_t\right)$ 包含当前节点 $c\_t$ 的 $K$ 个最近有效邻居节点，这为归一化提供了良好的视角，使距离惩罚更具可扩展性。
 
-为了整合全局策略和局部策略，首先将两个基础策略计算的动作分数相加，即 $\boldsymbol{u}_{\text{ens}} = \tilde{\boldsymbol{u}}_{\text{global}} + \boldsymbol{u}_{\text{local}}$。之后，集成策略的动作概率 $\pi_{\text{ens}}$ 通过以下公式计算：
+为了整合全局策略和局部策略，首先将两个基础策略计算的动作分数相加，即 $\boldsymbol{u}\_{\text{ens}} = \tilde{\boldsymbol{u}}\_{\text{global}} + \boldsymbol{u}\_{\text{local}}$。之后，集成策略的动作概率 $\pi\_{\text{ens}}$ 通过以下公式计算：
 
 $$
 \begin{aligned}
-u_{\text{masked}}^i & = \left\{\begin{aligned}
-C \cdot \tanh \left(\tilde{u}_{\text{global}}^i + u_{\text{local}}^i\right), & \text{如果节点 } n_i \text{ 有效,} \\
+u\_{\text{masked}}^i & = \left\{\begin{aligned}
+C \cdot \tanh \left(\tilde{u}\_{\text{global}}^i + u\_{\text{local}}^i\right), & \text{如果节点 } n\_i \text{ 有效,} \\
 -\infty, & \text{否则},
 \end{aligned}\right. \\
-\boldsymbol{\pi}_{\text{ens}} & = \operatorname{softmax}\left(\boldsymbol{u}_{\text{masked}}\right) .
+\boldsymbol{\pi}\_{\text{ens}} & = \operatorname{softmax}\left(\boldsymbol{u}\_{\text{masked}}\right) .
 \end{aligned}
 $$
 
-本文并不是独立训练每个基础策略，而是使用联合训练方法直接优化 $\pi_{\text{ens}}$，以鼓励全局策略和局部策略协同工作，从而有效结合它们的优势。
+本文并不是独立训练每个基础策略，而是使用联合训练方法直接优化 $\pi\_{\text{ens}}$，以鼓励全局策略和局部策略协同工作，从而有效结合它们的优势。
 
 #### 训练
 
-在实践中，首先对全局策略进行距离惩罚的预训练，持续 $T_1$ 轮，因为全局策略的状态和动作空间比局部策略更复杂。在联合训练阶段，使用策略梯度方法直接训练集成策略 $\pi_{\text{ens}}$，持续 $T_2$ 轮，该策略包括来自全局策略的可训练参数 $\tilde{\boldsymbol{\theta}}$ 和来自局部策略的 $\boldsymbol{\theta}$。按照 POMO，从不同的起始节点进行多次回放，在一次前馈中获得多条轨迹，并利用 REINFORCE 算法与共享基线估计预期回报 $J$ 的梯度。具体而言，多次回放的平均奖励作为 REINFORCE 基线，梯度 $\nabla_{\tilde{\boldsymbol{\theta}}, \boldsymbol{\theta}} J(\tilde{\boldsymbol{\theta}}, \boldsymbol{\theta})$ 通过以下公式估计：
+在实践中，首先对全局策略进行距离惩罚的预训练，持续 $T\_1$ 轮，因为全局策略的状态和动作空间比局部策略更复杂。在联合训练阶段，使用策略梯度方法直接训练集成策略 $\pi\_{\text{ens}}$，持续 $T\_2$ 轮，该策略包括来自全局策略的可训练参数 $\tilde{\boldsymbol{\theta}}$ 和来自局部策略的 $\boldsymbol{\theta}$。按照 POMO，从不同的起始节点进行多次回放，在一次前馈中获得多条轨迹，并利用 REINFORCE 算法与共享基线估计预期回报 $J$ 的梯度。具体而言，多次回放的平均奖励作为 REINFORCE 基线，梯度 $\nabla\_{\tilde{\boldsymbol{\theta}}, \boldsymbol{\theta}} J(\tilde{\boldsymbol{\theta}}, \boldsymbol{\theta})$ 通过以下公式估计：
 
 $$
-\frac{1}{N \cdot B} \sum_{i=1}^B \sum_{j=1}^N\left(R_{i, j}-\frac{1}{N} \sum_{j=1}^N R_{i, j}\right) \nabla_{\tilde{\boldsymbol{\theta}}, \boldsymbol{\theta}} \log \boldsymbol{\pi}_{\mathrm{ens}}\left(\boldsymbol{\tau}_{i, j}\right),
+\frac{1}{N \cdot B} \sum\_{i=1}^B \sum\_{j=1}^N\left(R\_{i, j}-\frac{1}{N} \sum\_{j=1}^N R\_{i, j}\right) \nabla\_{\tilde{\boldsymbol{\theta}}, \boldsymbol{\theta}} \log \boldsymbol{\pi}\_{\mathrm{ens}}\left(\boldsymbol{\tau}\_{i, j}\right),
 $$
 
-其中 $N$ 是轨迹的数量，等于节点的数量，$B$ 是批量大小，$R_{i, j}$ 是第 $i$ 个实例上第 $j$ 条轨迹 $\boldsymbol{\tau}_{i, j}$ 的奖励。
+其中 $N$ 是轨迹的数量，等于节点的数量，$B$ 是批量大小，$R\_{i, j}$ 是第 $i$ 个实例上第 $j$ 条轨迹 $\boldsymbol{\tau}_{i, j}$ 的奖励。
 
 ## 实验
 
