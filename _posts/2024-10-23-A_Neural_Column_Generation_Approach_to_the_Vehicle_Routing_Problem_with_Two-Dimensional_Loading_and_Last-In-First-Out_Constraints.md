@@ -75,7 +75,7 @@ VRP -> CVRP -> 2L-CVRP（运输矩形物品，每个物品都有特定的长度�
 
 2L-CVRP定义在一个完整的无向图 $G=(V, E)$ 上，其中 $V=\lbrace 0,1,2, \ldots, n, n+1\rbrace$ 表示顶点集合，包括客户集合 $V\_c=\lbrace 1,2, \ldots, n\rbrace$ 和仓库0。顶点 $n+1$ 表示仓库的一个副本。任何一对顶点之间的连接由边集 $E$ 描述。对于每条边 $e \in E$，$c\_e$ 表示与边 $e$ 相关的旅行成本。还使用了边 $\left(v\_i, v\_j\right)$ 的另一种表示法。集合 $K$ 表示可用的同质车辆车队。每辆车都有一个以 $H$ 和 $W$ 表示的装载区域，分别为长度和宽度。所有车辆的装载区域相同。显然，每辆车的装载表面总面积为 $A=H \times W$。每辆车还有一个称为 $Q$ 的重量容量。
 
-对于客户，$\forall i \in V\_c$ 由一组矩形 $M\_i$ 特征化。任何物品 $m \in M\_i$ 由宽度 $w\_{i, m}$、长度 $h\_{i, m}$ 和重量 $q\_{i, m}$ 标识。设 $\nu\_i$ 和 $q\_i$ 分别表示客户 $i$ 所有物品的总面积和总重量。换句话说，$\nu\_i=\sum\_{m \in M\_i} w\_{i, m} h\_{i, m}$ 和 $q\_i=\sum\_{m \in M\_i} q\_{i, m}$。在 $G$ 中物品的总数量等于 $|M|$，其中 $M$ 是所有客户物品集合的并集。2L-CVRP 要求为车队规划路线，以满足客户的需求，同时遵循以下约束：
+对于客户，$\forall i \in V\_c$ 由一组矩形 $M\_i$ 特征化。任何物品 $m \in M\_i$ 由宽度 $w\_{i, m}$、长度 $h\_{i, m}$ 和重量 $q\_{i, m}$ 标识。设 $\nu\_i$ 和 $q\_i$ 分别表示客户 $i$ 所有物品的总面积和总重量。换句话说，$\nu\_i=\sum\_{m \in M\_i} w\_{i, m} h\_{i, m}$ 和 $q\_i=\sum\_{m \in M\_i} q\_{i, m}$。在 $G$ 中物品的总数量等于 $\mid M\mid $，其中 $M$ 是所有客户物品集合的并集。2L-CVRP 要求为车队规划路线，以满足客户的需求，同时遵循以下约束：
 1. 每位客户必须被访问一次；
 2. 车辆运输的物品总重量不得超过 $Q$；
 3. 运输的物品必须在装载区内无碰撞地装载；
@@ -87,7 +87,7 @@ VRP -> CVRP -> 2L-CVRP（运输矩形物品，每个物品都有特定的长度�
 $$
 \begin{aligned}
 \min & \sum_{r \in \Omega} c_r \lambda_r \\ 
-\text { s.t. } & \sum_{r \in \Omega} \lambda_r=|K| \\ 
+\text { s.t. } & \sum_{r \in \Omega} \lambda_r=\mid K\mid  \\ 
 & \sum_{r \in \Omega} a_{i, r} \lambda_r=1, \forall i \in V_c, \\ 
 & \lambda_r \in\lbrace 0,1\rbrace, \forall r \in \Omega 
 \end{aligned}
@@ -95,7 +95,7 @@ $$
 
 其中 $\Omega$ 表示可行路线的集合；$c\_r$ 表示路线 $r$ 的总旅行成本；$\lambda\_r$ 是一个二进制决策变量，指示路线 $r$ 是否被选为解决方案的一部分；$a\_{i, r}$ 是一个二进制指示器，当顶点 $i$ 在路线 $r$ 中被访问时 $a\_{i, r}=1$，否则为 $a\_{i, r}=0$。
 
-方程 (1) 定义了集合划分问题的目标函数。约束集 (2) 规定应选择恰好 $|K|$ 条路线，因为假设车队中没有闲置车辆。这已成为开发 2L-CVRP 精确算法的惯例。约束集 (3) 规定每位客户必须被访问一次。约束集 (4) 定义了决策变量的域。
+方程 (1) 定义了集合划分问题的目标函数。约束集 (2) 规定应选择恰好 $\mid K\mid $ 条路线，因为假设车队中没有闲置车辆。这已成为开发 2L-CVRP 精确算法的惯例。约束集 (3) 规定每位客户必须被访问一次。约束集 (4) 定义了决策变量的域。
 
 直接枚举 $\Omega$ 的所以子集是不可行的，通常选择其一个较小的子集来创建问题的简化版本，称为受限主问题（RMP）。求解 RMP 得到一个解 $\lambda^\ast$，它使简化公式的目标函数值最小，但他可能不算原问题的最优解。为了改进 $\lambda^\ast$，解决一个成为定价问题的子问题，以确定 $\Omega$ 中可以增强解决方案的任何路线。这个迭代过程成为列生成，一直持续到没有发现进一步的改进。
 
@@ -105,10 +105,10 @@ $$
 \begin{aligned}
 \min & \sum_{e \in E} \bar{d}_e x_e-\pi_f, \\ 
 \text { s.t. } & \sum_{e \in \delta(i)} x_e=2, \forall i \in V, \\ 
-& \sum_{e \in \delta(S)} x_e \geq 2, \forall S \subset V_c, 1<|S|<n-1, \forall i \in S, \\ 
+& \sum_{e \in \delta(S)} x_e \geq 2, \forall S \subset V_c, 1<\mid S\mid <n-1, \forall i \in S, \\ 
 & \sum_{(i, j) \in E} x_{i j}\left(q_i+q_j\right) \leq 2 Q \\ 
 & \sum_{(i, j) \in E} x_{i j}\left(\nu_i+\nu_j\right) \leq 2 A, \\ 
-& \sum_{e \in E(S, \sigma)} x_e \leq|S|-1, \forall(S, \sigma) \text { such that } \sigma \notin \Sigma(S), \\ 
+& \sum_{e \in E(S, \sigma)} x_e \leq\mid S\mid -1, \forall(S, \sigma) \text { such that } \sigma \notin \Sigma(S), \\ 
 & x_e \in\lbrace 0,1\rbrace, \forall e \in E 
 \end{aligned}
 $$
@@ -135,7 +135,7 @@ $$
 
 请注意，标签算法生成的候选列可能违反装载约束。为了解决这个问题，将其框架构建为一个二元分类问题，开发一个机器学习模型来预测每个候选列的可行性。具体来说，模型预测每列满足装载约束的概率。
 
-模型的架构包括一个并行嵌入机制和一个递归处理策略，旨在有效捕捉每列中物品的同质和异质特征。对于给定的输入候选列，表示为物品集的序列 $\left[\left\lbrace x\_{i, m}\right\rbrace\_{1 \leq m \leq\left\mid M\_i\right|}\right]\_{1 \leq i \leq n}$，每个物品 $x\_{i, m}$ 通过归一化维度 $\left[\frac{w\_{i, m}}{W}, \frac{h\_{i, m}}{H}\right]$ 表示。对每个客户 $i$ 使用注意力机制来整合同质物品的特征（属于同一客户的物品）。为了处理异质特征（不同客户之间的物品），利用 GRU 来处理序列，结合订单信息，这对于遵循 LIFO 约束至关重要。此外，采用了一种基于对称性的数据增强技术，以将排列不变性融入模型中。如需查看模型架构的可视化表示，请参见图 2。
+模型的架构包括一个并行嵌入机制和一个递归处理策略，旨在有效捕捉每列中物品的同质和异质特征。对于给定的输入候选列，表示为物品集的序列 $\left[\left\lbrace x\_{i, m}\right\rbrace\_{1 \leq m \leq\left\mid M\_i\right\mid }\right]\_{1 \leq i \leq n}$，每个物品 $x\_{i, m}$ 通过归一化维度 $\left[\frac{w\_{i, m}}{W}, \frac{h\_{i, m}}{H}\right]$ 表示。对每个客户 $i$ 使用注意力机制来整合同质物品的特征（属于同一客户的物品）。为了处理异质特征（不同客户之间的物品），利用 GRU 来处理序列，结合订单信息，这对于遵循 LIFO 约束至关重要。此外，采用了一种基于对称性的数据增强技术，以将排列不变性融入模型中。如需查看模型架构的可视化表示，请参见图 2。
 
 ![image-20241023192415557]({{site.url}}/img/2024-10-23-A_Neural_Column_Generation_Approach_to_the_Vehicle_Routing_Problem_with_Two-Dimensional_Loading_and_Last-In-First-Out_Constraints/image-20241023192415557.png)
 
@@ -145,7 +145,7 @@ $$
 
 $$
 \begin{gathered}
-\hat{h}_{i, m}^l=\mathrm{LN}^l\left(h_{i, m}^{l-1}+\operatorname{MHA}_{i, m}^l\left(h_{i, 1}^{l-1}, \ldots, h_{i,\left|M_i\right|}^{l-1}\right)\right) \\ 
+\hat{h}_{i, m}^l=\mathrm{LN}^l\left(h_{i, m}^{l-1}+\operatorname{MHA}_{i, m}^l\left(h_{i, 1}^{l-1}, \ldots, h_{i,\left\mid M_i\right\mid }^{l-1}\right)\right) \\ 
 h_{i, m}^l=\mathrm{LN}^l\left(\hat{h}_{i, m}^l+\mathrm{FF}^l\left(\hat{h}_{i, m}^l\right)\right) 
 \end{gathered}
 $$
@@ -164,7 +164,7 @@ $$
 
 #### 客户级递归机制 
 
-在遵循 LIFO 规则的 2L-CVRP 背景下，客户之间存在顺序关系，表明不同客户的物品本质上是异质的。这种顺序关系决定了对于客户 $i$，在处理客户 $i+1$ 之前，客户 $i$ 的物品（记作 $\left.x\_{i, 1}, x\_{i, 2}, \ldots, x\_{i,\left|M\_i\right|}\right)$ 必须在客户 $i+1$ 的物品 $\left(x\_{i+1,1}, x\_{i+1,2}, \ldots, x\_{i+1,\left|M\_{i+1}\right|}\right)$ 之后装载到车辆中。
+在遵循 LIFO 规则的 2L-CVRP 背景下，客户之间存在顺序关系，表明不同客户的物品本质上是异质的。这种顺序关系决定了对于客户 $i$，在处理客户 $i+1$ 之前，客户 $i$ 的物品（记作 $\left.x\_{i, 1}, x\_{i, 2}, \ldots, x\_{i,\left\mid M\_i\right\mid }\right)$ 必须在客户 $i+1$ 的物品 $\left(x\_{i+1,1}, x\_{i+1,2}, \ldots, x\_{i+1,\left\mid M\_{i+1}\right\mid }\right)$ 之后装载到车辆中。
 
 为了建模不同客户物品之间的递归关系，使用 GRU，如下所示：
 
@@ -172,7 +172,7 @@ $$
 \widetilde{h}_t=\operatorname{GRU}\left(h_t, \widetilde{h}_{t-1}\right),
 $$
 
-其中 $\widetilde{h}\_t$ 表示时间步 $t$ 的隐藏状态，且 $\widetilde{h}\_0=\mathbf{0}$。在方法中，客户是按顺序处理的，每个时间步 $t$ 输入一个物品 $h\_t$ 到 GRU，总时间步数 $T$ 等于总物品数，即 $T=\sum\_{i=1}^n\left|M\_i\right|$。在处理完最后一个客户的最后一个物品后，GRU 的最终状态 $\widetilde{h}\_T$ 通过前馈网络和 sigmoid 函数转化为概率：
+其中 $\widetilde{h}\_t$ 表示时间步 $t$ 的隐藏状态，且 $\widetilde{h}\_0=\mathbf{0}$。在方法中，客户是按顺序处理的，每个时间步 $t$ 输入一个物品 $h\_t$ 到 GRU，总时间步数 $T$ 等于总物品数，即 $T=\sum\_{i=1}^n\left\mid M\_i\right\mid $。在处理完最后一个客户的最后一个物品后，GRU 的最终状态 $\widetilde{h}\_T$ 通过前馈网络和 sigmoid 函数转化为概率：
 
 $$
 \text { probability }=\operatorname{sigmoid}\left(\mathrm{FF}\left(\widetilde{h}_T\right)\right) .
@@ -182,10 +182,10 @@ $$
 
 属于同一客户的物品是同质的，不受任何特定顺序的约束。这一特性使得排列不变性作为数据增强策略得以应用，反映了组合问题的对称性。通过对每个客户的物品进行排列，可以生成新的等效实例，扩展训练数据集并减轻早期过拟合。
 
-具体而言，在对每个客户 $i$ 的所有物品应用物品级多头注意力机制后，我们执行排列 $\pi\_i$，打乱序列 $\left(1,2, \ldots,\left|M\_i\right|\right)$ 以产生不同的物品顺序。这个过程可以数学上表示为：
+具体而言，在对每个客户 $i$ 的所有物品应用物品级多头注意力机制后，我们执行排列 $\pi\_i$，打乱序列 $\left(1,2, \ldots,\left\mid M\_i\right\mid \right)$ 以产生不同的物品顺序。这个过程可以数学上表示为：
 
 $$
-h_{i, 1}, h_{i, 2}, \ldots, h_{i,\left|M_i\right|}=h_{i, \pi_i(1)}, h_{i, \pi_i(2)}, \ldots, h_{i, \pi_i\left(\left|M_i\right|\right)}
+h_{i, 1}, h_{i, 2}, \ldots, h_{i,\left\mid M_i\right\mid }=h_{i, \pi_i(1)}, h_{i, \pi_i(2)}, \ldots, h_{i, \pi_i\left(\left\mid M_i\right\mid \right)}
 $$
 
 这个排列在处理 GRU 之前独立应用于每个客户的物品集合。
