@@ -1,3 +1,17 @@
+---
+layout:     post
+title:      Prompt Learning for Generalized Vehicle Routing
+subtitle:   IJCAI2024 泛化能力 提示词工程
+date:       2024/10/29
+author:     Birdie
+header-img: img/post\_header.jpg
+catalog: true
+tags:
+    - 论文阅读
+    - 组合优化
+    - IJCAI
+---
+
 Prompt Learning for Generalized Vehicle Routing
 
 香港城市大学 张青富老师课题组、南方科技大学 王振坤老师课题组
