@@ -152,6 +152,7 @@ TSP中常用的 greedy 解码和 sample 解码通常只关注最后一项而忽�
 $$
 L(w=)E_{\pi}[(C(\pi)-b)\bigtriangledown\log p_\theta (\pi | w)]
 $$
+
 其实就是REINFORCE。
 
 ## 评估表现
