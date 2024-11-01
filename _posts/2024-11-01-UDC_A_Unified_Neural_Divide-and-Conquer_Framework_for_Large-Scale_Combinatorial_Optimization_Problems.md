@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      UDC: A Unified Neural Divide-and-Conquer Framework for Large-Scale Combinatorial Optimization Problems
+title:      UDC A Unified Neural Divide-and-Conquer Framework for Large-Scale Combinatorial Optimization Problems
 subtitle:   NIPS2024 大规模 多COP框架 分治策略
 date:       2024/11/01
 author:     Birdie
