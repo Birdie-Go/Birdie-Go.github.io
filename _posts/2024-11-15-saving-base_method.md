@@ -40,8 +40,8 @@ Journal of Intelligent Manufacturing (2023)
 
 - $S\_{ij}=C\_{i0}+C\_{0j}-\lambda C\_{ij}$
 - $c\_{ik}^{mod}=\min\_m(c\_{im})-(c\_{ik}-\min\_m(c\_{im}))$，多仓库，$k$ 是仓库，$i$ 是客户
-- $S\_{ij}=C\_{i0}+C\_{0j}-\lambda C\_{ij}+\mu|C\_{0i}-C\_{j0}|$
-- $S\_{ij}=C\_{i0}+C\_{0j}-\lambda C\_{ij}+\mu|C\_{0i}-C\_{j0}|+v(d\_i+d\_j)/\bar{d}$，其中 $d$ 是需求
+- $S\_{ij}=C\_{i0}+C\_{0j}-\lambda C\_{ij}+\mu\mid C\_{0i}-C\_{j0}\mid $
+- $S\_{ij}=C\_{i0}+C\_{0j}-\lambda C\_{ij}+\mu\mid C\_{0i}-C\_{j0}\mid +v(d\_i+d\_j)/\bar{d}$，其中 $d$ 是需求
 
 本文提出的方法
 
