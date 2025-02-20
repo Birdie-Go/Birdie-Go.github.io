@@ -223,10 +223,12 @@ $O(kl\_{max}^2)$，$k$ 是迭代次数，$l\_{max}$ 是局部解的长度。
 **问题设置**
 
 一个解 $\lbrace 0,1,2,3,0,4,5,0,6,7,0,8,9,10\rbrace$ 记为
+
 $$
 1 \quad 2 \quad 3 \quad 4 \quad 5 \quad 6 \quad 7 \quad 8 \quad 9 \quad 10 \\
 1 \quad 0 \quad 0 \quad 1 \quad 0 \quad 1 \quad 0 \quad 1 \quad 0 \quad 0 \\
 $$
+
 其中第一行显示访问的节点序列，而第二行表示是否通过仓库或其他客户节点访问每个节点。
 
 **Transformer 网络**
