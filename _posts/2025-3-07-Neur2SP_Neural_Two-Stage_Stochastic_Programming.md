@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      Neur2SP Neural Two-Stage Stochastic Programming
-subtitle:   NIPS2022 二阶段随机优化
+subtitle:   NIPS2022 二阶段随机优化 学习价值函数
 date:       2025/03/07
 author:     Birdie
 header-img: img/post\_header.jpg

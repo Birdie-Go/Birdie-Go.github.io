@@ -46,7 +46,7 @@ $$
 Ax \leq b, \quad x \in \mathbb{R}^{n_1 - p_1} \times \mathbb{Z}^{p_1}, \quad (2)
 $$
 
-其中，$Q(x, \omega) := \min_y \lbraceq_\omega^\top y \mid W_\omega y \leq h_\omega - T_\omega x; y \in \mathbb{R}^{n_2 - p_2} \times \mathbb{Z}^{p_2}\rbrace$。
+其中，$Q(x, \omega) := \min_y \lbrace q_\omega^\top y \mid W_\omega y \leq h_\omega - T_\omega x; y \in \mathbb{R}^{n_2 - p_2} \times \mathbb{Z}^{p_2}\rbrace $。
 
 具体来说，式(1)和(2)定义了第一阶段问题，其中$x \in \mathbb{R}^{n\_1}$是决策变量，$n\_1 \geq p\_1$；$Q(x, \omega)$定义了第二阶段问题，其中$y \in \mathbb{R}^{n\_2}$是决策变量，$n\_2 \geq p\_2$。我们称第一阶段中的静态参数组$\mu \in \mathbb{R}^{n\_1}$、$A \in \mathbb{R}^{m\_1 \times n\_1}$和$b \in \mathbb{R}^{m\_1}$为上下文（context），并假设不确定参数组$q\_\omega \in \mathbb{R}^{n\_2}$、$W\_\omega \in \mathbb{R}^{m\_2 \times n\_2}$、$T\_\omega \in \mathbb{R}^{m\_2 \times n\_1}$和$h\_\omega \in \mathbb{R}^{m\_2}$遵循分布$P$。本文专注于基于图的SIPs，这是一类在许多领域（如网络、交通和调度）中具有实际应用的问题。
 
@@ -56,7 +56,7 @@ $$
 O(x) := \min_x \mu^\top x + \frac{1}{N} \sum_{i=1}^N Q(x, \omega_i), \quad (3)
 $$
 
-其中，$\lbrace\omega\_i\rbrace\_{i=1}^N$是从$P$中抽取的一组情景，即不确定参数的独立同分布（i.i.d.）样本。通常，为了使情景分布$\hat{P}$与$P$拟合良好，需要大量的情景集，这可能导致给定求解器的MIP难以处理。在本文中，我们的目标是通过学习情景的表示来找到$\lbrace\omega\_i\rbrace\_{i=1}^N$中少量的信息量大的代表性情景，从而显著提高计算效率，同时容忍可接受的近似误差。
+其中，$\lbrace \omega\_i\rbrace \_{i=1}^N$是从$P$中抽取的一组情景，即不确定参数的独立同分布（i.i.d.）样本。通常，为了使情景分布$\hat{P}$与$P$拟合良好，需要大量的情景集，这可能导致给定求解器的MIP难以处理。在本文中，我们的目标是通过学习情景的表示来找到$\lbrace \omega\_i\rbrace \_{i=1}^N$中少量的信息量大的代表性情景，从而显著提高计算效率，同时容忍可接受的近似误差。
 
 ### 条件变分自编码器
 
@@ -70,7 +70,7 @@ $$
 
 ## 方法论
 
-给定一类随机整数规划（SIP）实例 $\lbraceX\_m\rbrace\_{m=1}^M$，其参数从分布$D$中抽取，我们将每个实例视为一个2元组$X\_m = (D\_m, \lbrace\omega\_i^m\rbrace\_{i=1}^N)$，其中$D\_m$表示第$m$个实例中的上下文（即静态参数组），$\omega\_i^m$表示第$m$个实例中的第$i$个情景（即不确定参数的第$i$个实现）。我们的目标是学习每个实例中情景$\lbrace\omega\_i^m\rbrace\_{i=1}^N$在上下文$D\_m$下的潜在表示（变量）$\lbracez\_i^m\rbrace\_{i=1}^N$。
+给定一类随机整数规划（SIP）实例 $\lbrace X\_m\rbrace \_{m=1}^M$，其参数从分布$D$中抽取，我们将每个实例视为一个2元组$X\_m = (D\_m, \lbrace \omega\_i^m\rbrace \_{i=1}^N)$，其中$D\_m$表示第$m$个实例中的上下文（即静态参数组），$\omega\_i^m$表示第$m$个实例中的第$i$个情景（即不确定参数的第$i$个实现）。我们的目标是学习每个实例中情景$\lbrace \omega\_i^m\rbrace \_{i=1}^N$在上下文$D\_m$下的潜在表示（变量）$\lbrace z\_i^m\rbrace \_{i=1}^N$。
 
 ### 用于情景表示的条件变分自编码器（CVAE）
 
@@ -102,7 +102,7 @@ $$
 
 **半监督CVAE**。通过推断出的情景表示，我们可以直接为解决SIP的多种下游任务提供支持，例如使用现成的聚类算法进行情景缩减。然而，这种方法可能会忽略情景与目标值之间的关系，这在实践中是不可忽视的，因为即使相似的情景也可能产生不同的解决方案。因此，我们还将CVAE扩展到以半监督的方式预测目标函数。鉴于情景已被嵌入到连续空间中，预测过程预计将具有良好的泛化能力。
 
-大多数用于半监督学习的CVAE模型预测离散目标，并将真实值（例如类别标签）视为条件变量。相比之下，我们预测数据的连续属性（即目标值），并直接通过编码器对其进行近似。为此，我们使用CPLEX求解器仅针对少量实例（1%的$M$）收集由相应情景和上下文定义的MIP问题的最优目标值$\lbraceY\_i^m\rbrace\_{i=1}^N$。我们将底层的$(\omega\_i^m, Y\_i^m, D\_m)$联合分布记为$D\_Y$。然后，我们使用一个子网络处理编码器中的GNN嵌入$(\omega\_i^m, D\_m)$，目标函数$\sigma$参数化为：
+大多数用于半监督学习的CVAE模型预测离散目标，并将真实值（例如类别标签）视为条件变量。相比之下，我们预测数据的连续属性（即目标值），并直接通过编码器对其进行近似。为此，我们使用CPLEX求解器仅针对少量实例（1%的$M$）收集由相应情景和上下文定义的MIP问题的最优目标值$\lbrace Y\_i^m\rbrace \_{i=1}^N$。我们将底层的$(\omega\_i^m, Y\_i^m, D\_m)$联合分布记为$D\_Y$。然后，我们使用一个子网络处理编码器中的GNN嵌入$(\omega\_i^m, D\_m)$，目标函数$\sigma$参数化为：
 
 $$
 r_\psi(Y_i^m \mid h_i^m) = \sigma(Y_i^m; h_i^m, \psi); \quad q_\phi(h_i^m \mid \omega_i^m, D_m) = g(h_i^m; \omega_i^m, D_m, \phi), \quad (8)
@@ -114,9 +114,9 @@ $$
 
 为SIPs参数化CVAE的一个主要挑战是如何有效地嵌入上下文，因为它具有高维且连续的特点。此外，它还涉及编码器和解码器的输入，并显著影响最终的情景表示。直接使用多层感知机（MLP）处理$D\_m$中的静态参数可能会失败，因为它无法利用问题结构，并且无法泛化到不同大小的实例。为了克服这些限制，我们利用图神经网络（GNN）嵌入上下文$D\_m$，以获得解码器中的条件变量。同时，我们应用相同的GNN嵌入每个情景及其上下文$(\omega\_i^m, D\_m)$，以获得编码器中的潜在表示。为此，我们首先在图上描述上下文和情景。
 
-**SIP图**。我们定义一个完全图$G = (V, E)$，其中$V = \lbracev\_1, \dots, v\_n\rbrace$表示节点，其特征为$V \in \mathbb{R}^{n \times d\_v}$；$E = \lbracee\_{jk} \mid v\_j, v\_k \in V\rbrace$表示边，其特征为$E \in \mathbb{R}^{n \times n \times d\_e}$。具体来说，第$j$个节点上的特征表示为$v\_j^{\omega\_i} = [s\_j^{\omega\_i}; d\_j]$（$[;]$表示连接操作）。其中，$s\_j^{\omega\_i} \in \omega\_i^m$表示第$j$个节点上的不确定参数的实现，$d\_j \in D\_m$表示第$j$个节点上的静态参数。类似地，边$e\_{jk}$上的特征表示为$e\_{jk}^{\omega\_i} = [s\_{jk}^{\omega\_i}; d\_{jk}]$，其中$s\_{jk}^{\omega\_i}$和$d\_{jk}$分别表示来自第$i$个情景和上下文的参数。与现有工作只考虑节点上的变化参数不同，我们的图表示更为通用，可以应用于更广泛的SIPs类别。
+**SIP图**。我们定义一个完全图$G = (V, E)$，其中$V = \lbrace v\_1, \dots, v\_n\rbrace $表示节点，其特征为$V \in \mathbb{R}^{n \times d\_v}$；$E = \lbrace e\_{jk} \mid v\_j, v\_k \in V\rbrace $表示边，其特征为$E \in \mathbb{R}^{n \times n \times d\_e}$。具体来说，第$j$个节点上的特征表示为$v\_j^{\omega\_i} = [s\_j^{\omega\_i}; d\_j]$（$[;]$表示连接操作）。其中，$s\_j^{\omega\_i} \in \omega\_i^m$表示第$j$个节点上的不确定参数的实现，$d\_j \in D\_m$表示第$j$个节点上的静态参数。类似地，边$e\_{jk}$上的特征表示为$e\_{jk}^{\omega\_i} = [s\_{jk}^{\omega\_i}; d\_{jk}]$，其中$s\_{jk}^{\omega\_i}$和$d\_{jk}$分别表示来自第$i$个情景和上下文的参数。与现有工作只考虑节点上的变化参数不同，我们的图表示更为通用，可以应用于更广泛的SIPs类别。
 
-在SIP图的基础上，我们可以利用GNN分别为上下文$D\_m$或变化的情景与上下文$(\omega\_i^m, D\_m)$（$i = \lbrace1, \dots, N\rbrace$）导出嵌入，分别记为$h\_m$和$h\_i^m$。在本文中，我们采用了图卷积网络（GCN），这是GNN的一个常用变体。
+在SIP图的基础上，我们可以利用GNN分别为上下文$D\_m$或变化的情景与上下文$(\omega\_i^m, D\_m)$（$i = \lbrace 1, \dots, N\rbrace $）导出嵌入，分别记为$h\_m$和$h\_i^m$。在本文中，我们采用了图卷积网络（GCN），这是GNN的一个常用变体。
 
 **编码器**。编码器处理图嵌入$h\_i^m$，通过两个独立的线性投影分别计算潜在变量的均值和标准差的二维向量，即式(6)中的$\mu\_\phi(\omega\_i^m, D\_m)$和$\sigma\_\phi(\omega\_i^m, D\_m)$。同样，我们通过线性投影将图嵌入$h\_m$映射为一个二维向量，即式(5)中的$c^m$。
 
