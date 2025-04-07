@@ -20,6 +20,7 @@ ICLR 2025
 
 超大规模TSP（100,000）
 
+开源：https://github.com/CIAM-Group/SIL
 
 
 ## 摘要
