@@ -115,7 +115,7 @@ $$
 g(\lambda) = J(\pi^*_\lambda, \lambda) \quad (9)
 $$
 
-其中 $\pi^*\_\lambda = \arg\max\_{\pi\_\theta} J(\pi\_\theta, \lambda)$。这里，$\pi\_\theta$ 是原始变量，而 $\lambda \geq 0$ 是对偶变量。众所周知，对偶函数 $g(\lambda)$ 是原始问题 (6) 的上界。此外，可以证明目标函数在 $\pi\_\theta$ 上是凹的，因此强对偶性（strong duality）成立，即 $g(\lambda)$ 的最小值等于原始问题 (6) 的最大值。因此，可以通过对偶梯度方法来解决原始问题，该方法通过迭代执行以下两个步骤：1）基于当前的 $\lambda$ 值找到 $\pi^*\_\lambda = \arg\max\_{\pi\_\theta} J(\pi\_\theta, \lambda)$；2）对对偶函数 $g(\lambda)$ 进行梯度下降。
+其中 $\pi^\ast\_\lambda = \arg\max\_{\pi\_\theta} J(\pi\_\theta, \lambda)$。这里，$\pi\_\theta$ 是原始变量，而 $\lambda \geq 0$ 是对偶变量。众所周知，对偶函数 $g(\lambda)$ 是原始问题 (6) 的上界。此外，可以证明目标函数在 $\pi\_\theta$ 上是凹的，因此强对偶性（strong duality）成立，即 $g(\lambda)$ 的最小值等于原始问题 (6) 的最大值。因此，可以通过对偶梯度方法来解决原始问题，该方法通过迭代执行以下两个步骤：1）基于当前的 $\lambda$ 值找到 $\pi^\ast\_\lambda = \arg\max\_{\pi\_\theta} J(\pi\_\theta, \lambda)$；2）对对偶函数 $g(\lambda)$ 进行梯度下降。
 
 **给定 $\lambda$ 时找到最优的 $\pi^*_\lambda$**：算法从初始的 $\lambda$ 开始，解决无约束问题：
 
@@ -131,7 +131,7 @@ $$
 
 其中 $Z\_\lambda(x) = \sum\_y \pi\_{\text{ref}}(y\mid x) \exp\left[\frac{1}{\beta} (r(x, y) - \lambda c(x, y))\right]$ 是一个归一化函数。
 
-我们现在定义一个新的奖励函数 $r\_\lambda(x, y) = r(x, y) - \lambda c(x, y)$，它通过 $\lambda$ 确定的权衡将 LLM 的回答的有用性和有害性结合起来。然后，(11) 式表明，给定 $\lambda$ 时的最优策略可以直接从 $r\_\lambda$ 推导出来。然而，由于归一化函数难以计算，这在实际中很难实现。在 DPO 中，当 $\lambda = 0$ 时，通过将真实奖励 $r^*$ 用最优策略 $\pi^*$ 表示（根据 (11) 式），然后将其代入 BT 偏好模型 (1) 中，其中归一化函数会相互抵消。这样，最优策略可以通过最小化 (3) 式中的回归损失来获得。为了将这种方法适应到我们的设置中，关键思想是根据 $r\_\lambda(x, y)$ 定义一个新的 BT 偏好模型，如下所示：
+我们现在定义一个新的奖励函数 $r\_\lambda(x, y) = r(x, y) - \lambda c(x, y)$，它通过 $\lambda$ 确定的权衡将 LLM 的回答的有用性和有害性结合起来。然后，(11) 式表明，给定 $\lambda$ 时的最优策略可以直接从 $r\_\lambda$ 推导出来。然而，由于归一化函数难以计算，这在实际中很难实现。在 DPO 中，当 $\lambda = 0$ 时，通过将真实奖励 $r^\ast$ 用最优策略 $\pi^\ast$ 表示（根据 (11) 式），然后将其代入 BT 偏好模型 (1) 中，其中归一化函数会相互抵消。这样，最优策略可以通过最小化 (3) 式中的回归损失来获得。为了将这种方法适应到我们的设置中，关键思想是根据 $r\_\lambda(x, y)$ 定义一个新的 BT 偏好模型，如下所示：
 
 $$
 p^*_\lambda(y_1 \succ y_2\mid x) = \frac{\exp(r_\lambda(x, y_1))}{\exp(r_\lambda(x, y_1)) + \exp(r_\lambda(x, y_2))} \quad (12)
@@ -145,7 +145,7 @@ $$
 L(\pi_\theta; \pi_{\text{ref}}) = -\mathbb{E}_{(x,y^\omega,y^l) \sim D_{r_\lambda}} \left[ \log \sigma\left(\beta \log \frac{\pi_\theta(y^\omega\mid x)}{\pi_{\text{ref}}(y^\omega\mid x)} - \beta \log \frac{\pi_\theta(y^l\mid x)}{\pi_{\text{ref}}(y^l\mid x)}\right) \right] \quad (13)
 $$
 
-请注意，这个目标与原始的优化问题 (10) 并不相同。然而，我们可以证明，如果新的 BT 偏好模型 $p^*\_\lambda$ 是根据我们的偏好函数 $r\_\lambda = r(x, y) - \lambda c(x, y)$ 生成的，并且新的数据集 $D\_{r\_\lambda}$ 足够大且完美地拟合新的偏好 $p^*\_\lambda$，使得可以通过最小化 $L(r; D\_{r\_\lambda})$ 得到 $r\_\lambda$，那么最小化 (13) 式的最优策略与最大化原始目标 (10) 的最优策略是一致的。
+请注意，这个目标与原始的优化问题 (10) 并不相同。然而，我们可以证明，如果新的 BT 偏好模型 $p^\ast\_\lambda$ 是根据我们的偏好函数 $r\_\lambda = r(x, y) - \lambda c(x, y)$ 生成的，并且新的数据集 $D\_{r\_\lambda}$ 足够大且完美地拟合新的偏好 $p^\ast\_\lambda$，使得可以通过最小化 $L(r; D\_{r\_\lambda})$ 得到 $r\_\lambda$，那么最小化 (13) 式的最优策略与最大化原始目标 (10) 的最优策略是一致的。
 
 **对 $\lambda$ 进行梯度下降**：接下来，我们对对偶函数 $g(\lambda)$ 应用梯度下降，以更新 $\lambda$ 并最小化对偶函数 $g(\lambda)$。如附录 A.2.4 所示，对偶函数 $g(\lambda)$ 的梯度可以表示为：
 
@@ -153,7 +153,7 @@ $$
 \frac{dg(\lambda)}{d\lambda} = \mathbb{E}_{x \sim D, y \sim \pi^*_\lambda(y\mid x)}[C_{\text{limit}} - c(x, y)] \quad (14)
 $$
 
-它表示所学策略 $\pi^*_\lambda$ 的预期约束违反情况。
+它表示所学策略 $\pi^\ast_\lambda$ 的预期约束违反情况。
 
 ## 实验
 
