@@ -58,9 +58,7 @@ $$
 
 ### 训练
 
-### 3.3 训练
-
-在训练过程中，反复地基于  $  K  $  个不同的向量  $  \lbrace v\_1, \ldots, v\_K\rbrace   $  为实例  $  l  $  采样  $  K  $  个解决方案  $  \lbrace \tau\_1, \ldots, \tau\_K\rbrace   $ ，其中解决方案  $  \tau\_i  $  是从概率分布  $  \pi\_\theta(\tau\_i | l, v\_i)  $  中采样得到的。为了使网络能够学习  $  K  $  种不同的解决方案策略，采用 Poppy 方案，仅根据  $  K  $  个解决方案中最佳的那个来更新模型权重。假设  $  \tau^*  $  是最佳解决方案，即  $  \tau^* = \arg\min\_{\tau\_i \in \lbrace \tau\_1, \ldots, \tau\_K\rbrace } R(\tau\_i, l)  $ ， $  v^*  $  是对应的向量（若有多个解同时最优，则任选其一）。然后，基于以下梯度更新模型：
+在训练过程中，反复地基于  $  K  $  个不同的向量  $  \lbrace v\_1, \ldots, v\_K\rbrace   $  为实例  $  l  $  采样  $  K  $  个解决方案  $  \lbrace \tau\_1, \ldots, \tau\_K\rbrace   $ ，其中解决方案  $  \tau\_i  $  是从概率分布  $  \pi\_\theta(\tau\_i \mid l, v\_i)  $  中采样得到的。为了使网络能够学习  $  K  $  种不同的解决方案策略，采用 Poppy 方案，仅根据  $  K  $  个解决方案中最佳的那个来更新模型权重。假设  $  \tau^*  $  是最佳解决方案，即  $  \tau^* = \arg\min\_{\tau\_i \in \lbrace \tau\_1, \ldots, \tau\_K\rbrace } R(\tau\_i, l)  $ ， $  v^*  $  是对应的向量（若有多个解同时最优，则任选其一）。然后，基于以下梯度更新模型：
 
 $$
 \nabla_\theta L = \mathbb{E}_{\tau^*} \left[ (R(\tau^*, l) - b^\circ) \nabla_\theta \log \pi_\theta(\tau^* | l, v^*) \right]
