@@ -1,3 +1,16 @@
+---
+layout:     post
+title:      TODO Enhancing LLM Alignment with Ternary Preferences
+subtitle:   ICLR2025 偏好优化 平局
+date:       2025/05/30
+author:     Birdie
+header-img: img/post\_header.jpg
+catalog: true
+tags:
+    - 论文阅读
+    - AAAI
+---
+
 ## 偏好优化理论基础
 
 ### BT模型
