@@ -92,19 +92,19 @@ $$
 
 $\text{valid}(\cdot)$ 确保选中的节点构成一个独立集（即任意两个节点之间没有边相连）。
 
-概率型神经 NPC 求解器通过定义一个参数化的条件分布 $p_\theta(x\mids)$ 来最小化期望代价：
+概率型神经 NPC 求解器通过定义一个参数化的条件分布 $p_\theta(x\mid s)$ 来最小化期望代价：
 
 $$
-\mathbb{E}_{x \sim p_\theta(x\mids)}[c_s(x)]
+\mathbb{E}_{x \sim p_\theta(x\mid s)}[c_s(x)]
 $$
 
 通常使用强化学习进行优化。本文中，我们假设每个训练实例 $s$ 都有已知的高质量解 $x\_s^*$，因此采用**监督学习**方式进行训练。设训练集为 $S = \lbrace s\_i\rbrace \_{i=1}^N$，我们最大化高质量解的似然，损失函数为：
 
 $$
-\mathcal{L}(\theta) = \mathbb{E}_{s \sim S}[-\log p_\theta(x_s^*\mids)]
+\mathcal{L}(\theta) = \mathbb{E}_{s \sim S}[-\log p_\theta(x_s^*\mid s)]
 $$
 
-接下来，我们将介绍如何使用扩散模型对生成分布 $p_\theta(x\mids)$ 进行建模。为简洁起见，在后文中我们省略条件 $s$，并将 $x_s^*$ 记为扩散模型中的 $x_0$。
+接下来，我们将介绍如何使用扩散模型对生成分布 $p_\theta(x\mid s)$ 进行建模。为简洁起见，在后文中我们省略条件 $s$，并将 $x_s^*$ 记为扩散模型中的 $x_0$。
 
 ### DIFUSCO 中的扩散模型
 
@@ -117,22 +117,22 @@ $$
 其中 $x\_1, \dots, x\_T$ 是与数据 $x\_0 \sim q(x\_0)$ 同维度的潜变量。联合分布为：
 
 $$
-p_\theta(x_{0:T}) = p(x_T) \prod_{t=1}^T p_\theta(x_{t-1}\midx_t)
+p_\theta(x_{0:T}) = p(x_T) \prod_{t=1}^T p_\theta(x_{t-1}\mid x_t)
 $$
 
 这是**反向过程**（去噪），逐步从噪声中恢复出数据。而**前向过程**为：
 
 $$
-q(x_{1:T}\midx_0) = \prod_{t=1}^T q(x_t\midx_{t-1})
+q(x_{1:T}\mid x_0) = \prod_{t=1}^T q(x_t\mid x_{t-1})
 $$
 
 逐步将数据加入噪声。训练目标是最小化负对数似然的变分下界：
 
 $$
 \mathbb{E}[-\log p_\theta(x_0)] \leq \mathbb{E}_q\left[
--\log \frac{p_\theta(x_{0:T})}{q(x_{1:T}\midx_0)}
+-\log \frac{p_\theta(x_{0:T})}{q(x_{1:T}\mid x_0)}
 \right] = \mathbb{E}_q\left[
-\sum_{t>1} D_{\text{KL}}[q(x_{t-1}\midx_t, x_0) \\mid p_\theta(x_{t-1}\midx_t)] - \log p_\theta(x_0\midx_1)
+\sum_{t>1} D_{\text{KL}}[q(x_{t-1}\mid x_t, x_0) \\mid  p_\theta(x_{t-1}\mid x_t)] - \log p_\theta(x_0\mid x_1)
 \right] + C
 $$
 
@@ -143,7 +143,7 @@ $$
 对于使用**多项式噪声**的离散扩散模型，前向过程定义为：
 
 $$
-q(x_t\midx_{t-1}) = \text{Cat}(x_t; p = \tilde{x}_{t-1} Q_t)
+q(x_t\mid x_{t-1}) = \text{Cat}(x_t; p = \tilde{x}_{t-1} Q_t)
 $$
 
 其中：
@@ -155,19 +155,19 @@ $$
 $t$ 步边缘分布为：
 
 $$
-q(x_t\midx_0) = \text{Cat}(x_t; p = \tilde{x}_0 Q_t), \quad Q_t = Q_1 Q_2 \dots Q_t
+q(x_t\mid x_0) = \text{Cat}(x_t; p = \tilde{x}_0 Q_t), \quad Q_t = Q_1 Q_2 \dots Q_t
 $$
 
 后验分布为：
 
 $$
-q(x_{t-1}\midx_t, x_0) = \text{Cat}\left(x_{t-1}; p = \frac{\tilde{x}_t Q_t^\top \odot \tilde{x}_0 Q_{t-1}}{\tilde{x}_0 Q_t \tilde{x}_t^\top} \right)
+q(x_{t-1}\mid x_t, x_0) = \text{Cat}\left(x_{t-1}; p = \frac{\tilde{x}_t Q_t^\top \odot \tilde{x}_0 Q_{t-1}}{\tilde{x}_0 Q_t \tilde{x}_t^\top} \right)
 $$
 
 训练时，神经网络预测的是干净数据 $\hat{x}_0$，反向过程为：
 
 $$
-p_\theta(x_{t-1}\midx_t) = \sum_{\hat{x}_0} q(x_{t-1}\midx_t, \hat{x}_0) p_\theta(\hat{x}_0\midx_t)
+p_\theta(x_{t-1}\mid x_t) = \sum_{\hat{x}_0} q(x_{t-1}\mid x_t, \hat{x}_0) p_\theta(\hat{x}_0\mid x_t)
 $$
 
 #### 连续扩散模型（Continuous Diffusion）
@@ -181,19 +181,19 @@ $$
 前向过程为：
 
 $$
-q(\hat{x}_t\mid\hat{x}_{t-1}) = \mathcal{N}(\hat{x}_t; \sqrt{1 - \beta_t} \hat{x}_{t-1}, \beta_t I)
+q(\hat{x}_t\mid \hat{x}_{t-1}) = \mathcal{N}(\hat{x}_t; \sqrt{1 - \beta_t} \hat{x}_{t-1}, \beta_t I)
 $$
 
 $t$ 步边缘分布为：
 
 $$
-q(\hat{x}_t\mid\hat{x}_0) = \mathcal{N}(\hat{x}_t; \sqrt{\bar{\alpha}_t} \hat{x}_0, (1 - \bar{\alpha}_t)I), \quad \alpha_t = 1 - \beta_t, \quad \bar{\alpha}_t = \prod_{\tau=1}^t \alpha_\tau
+q(\hat{x}_t\mid \hat{x}_0) = \mathcal{N}(\hat{x}_t; \sqrt{\bar{\alpha}_t} \hat{x}_0, (1 - \bar{\alpha}_t)I), \quad \alpha_t = 1 - \beta_t, \quad \bar{\alpha}_t = \prod_{\tau=1}^t \alpha_\tau
 $$
 
 后验分布为：
 
 $$
-q(\hat{x}_{t-1}\mid\hat{x}_t, \hat{x}_0) = \mathcal{N}(\hat{x}_{t-1}; \mu, \Sigma)
+q(\hat{x}_{t-1}\mid \hat{x}_t, \hat{x}_0) = \mathcal{N}(\hat{x}_{t-1}; \mu, \Sigma)
 $$
 
 训练时，神经网络预测的是未缩放的高斯噪声 $\epsilon_t$：
@@ -205,7 +205,7 @@ $$
 反向过程为：
 
 $$
-p_\theta(\hat{x}_{t-1}\mid\hat{x}_t) = q\left(\hat{x}_{t-1} \middle\mid \hat{x}_t, \frac{\hat{x}_t - \sqrt{1 - \bar{\alpha}_t} f_\theta(\hat{x}_t, t)}{\sqrt{\bar{\alpha}_t}} \right)
+p_\theta(\hat{x}_{t-1}\mid \hat{x}_t) = q\left(\hat{x}_{t-1} \mid dle\mid  \hat{x}_t, \frac{\hat{x}_t - \sqrt{1 - \bar{\alpha}_t} f_\theta(\hat{x}_t, t)}{\sqrt{\bar{\alpha}_t}} \right)
 $$
 
 最终通过阈值化或量化将 $\hat{x}_0$ 转换回 $\lbrace 0,1\rbrace $ 空间。
@@ -219,7 +219,7 @@ $$
 连续域中的 **DDIM**（Denoising Diffusion Implicit Models）通过重新定义反向过程为：
 
 $$
-q(x_{\tau_{i-1}} \mid x_{\tau_i}, x_0)
+q(x_{\tau_{i-1}} \mid  x_{\tau_i}, x_0)
 $$
 
 其中 $\tau = \lbrace \tau_1, \dots, \tau_M\rbrace $ 是 $[1, T]$ 的一个**长度为 $M$ 的单调子序列**，满足 $\tau_1 = 1$，$\tau_M = T$，且 $M \ll T$。
@@ -290,7 +290,7 @@ $$
 
 #### 输出头
 
-- **离散扩散**：2-神经元分类头 → 输出 $p\_\theta(x\_0 = 1 \mid x\_t, s)$
+- **离散扩散**：2-神经元分类头 → 输出 $p\_\theta(x\_0 = 1 \mid  x\_t, s)$
 - **连续扩散**：1-神经元回归头 → 输出 $\hat{x}_0$
 
 #### 超参数
@@ -303,7 +303,7 @@ $$
 
 ### 解码策略
 
-扩散模型训练完成后，我们从 $p\_\theta(x\_0\mid s)$ 中采样得到原始变量 $x\_0$。然而，**概率生成模型无法保证采样结果一定满足 CO 问题的可行性约束**（如 TSP 的哈密顿回路、MIS 的独立集）。因此，我们需要为每个任务设计**专用解码策略**。
+扩散模型训练完成后，我们从 $p\_\theta(x\_0\mid  s)$ 中采样得到原始变量 $x\_0$。然而，**概率生成模型无法保证采样结果一定满足 CO 问题的可行性约束**（如 TSP 的哈密顿回路、MIS 的独立集）。因此，我们需要为每个任务设计**专用解码策略**。
 
 #### 热图生成
 
@@ -311,7 +311,7 @@ $$
 
 | 模型类型     | 热图得分计算方式                                 |
 | ------------ | ------------------------------------------------ |
-| **离散扩散** | 直接使用最终预测概率 $p_\theta(x_0 = 1 | s)$     |
+| **离散扩散** | 直接使用最终预测概率 $p_\theta(x_0 = 1 \mid s)$     |
 | **连续扩散** | 去掉量化步骤，使用 $0.5(\hat{x}_0 + 1)$ 作为得分 |
 
 > 与先前非自回归方法不同，DIFUSCO 可通过**不同随机种子**生成**多样化热图**，从而支持多模态解空间搜索。
