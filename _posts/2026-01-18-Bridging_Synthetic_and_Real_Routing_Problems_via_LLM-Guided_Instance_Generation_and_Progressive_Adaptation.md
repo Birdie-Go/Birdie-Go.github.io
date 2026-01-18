@@ -16,6 +16,8 @@ Bridging Synthetic and Real Routing Problems via LLM-Guided Instance Generation 
 
 zhiguang cao课题组
 
+AAAI2026
+
 
 
 ## 研究背景和问题
