@@ -18,6 +18,8 @@ Jiwoo Son, Zhikai Zhao, Federico Berto, Chuanbo Hua, Zhiguang Cao, Changhyun Kwo
 
 ICLR2026，rating：4648
 
+https://openreview.net/forum?id=sKvo9ZZfpe
+
 ### 目标
 
 非对称、真实世界、VRP

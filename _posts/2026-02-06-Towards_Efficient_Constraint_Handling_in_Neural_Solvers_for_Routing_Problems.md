@@ -16,6 +16,10 @@ Towards Efficient Constraint Handling in Neural Solvers for Routing Problems
 
 Jieyi Bi, Zhiguang Cao, Jianan Zhou, Wen Song, Yaoxin Wu, Jie Zhang, Yining Ma, and Cathy Wu
 
+ICLR2026，rating：6486
+
+https://openreview.net/forum?id=raDFGuQxvD
+
 ### 目标
 
 复杂约束VPR
@@ -35,9 +39,13 @@ Jieyi Bi, Zhiguang Cao, Jianan Zhou, Wen Song, Yaoxin Wu, Jie Zhang, Yining Ma, 
 在本文中，我们提出了**Construct-and-Refine（CaR）**，作为一个简单 yet 有效的可行性细化框架，作为迈向通用神经方法进行高效约束处理的第一步。CaR引入了一个端到端的联合训练框架，统一了神经构造模块与神经改进模块。通过设计，它结合了两种范式的互补优势，同时针对效率：构造提供多样且高质量的解，有利于通过我们定制的损失函数引导的快速细化。与依赖繁重改进来减少最优性差距的先验混合方法不同，CaR使用更少的细化步骤，可以将运行时间从小时减少到分钟或秒。此外，提出的可行性细化方案内在地激励了一种新形式的**协同可行性感知（synergized feasibility awareness）**。CaR因此进一步考虑了一种**构造-改进共享表示（construction-improvement-shared representation）**，用于实现跨范式表示学习，实现潜在的知识共享，从而在更复杂的约束场景中提高性能。
 
 我们的贡献如下：
+
 1) 我们全面分析了现有可行性掩码和隐式可行性感知方案的局限性，并引入了用于高效约束处理的**基于学习的可行性细化方案**；
+
 2) 我们提出了**Construct-and-Refine（CaR）**，一个简单、通用、保持效率的框架，通过端到端联合训练执行可行性细化，构造适合快速细化的多样且高质量的解，由我们定制的损失函数引导；
+
 3) CaR通过**跨范式表示学习**实现新颖的协同可行性感知，进一步增强了复杂情况下的约束处理；
+
 4) 实验表明，CaR可能适用于增强大多数基于RL的构造和改进求解器，在解决各种硬约束VRP时，与经典和神经最先进方法相比，提供卓越的可行性、解质量和效率。
 
 ### 方法
@@ -147,6 +155,7 @@ $$
 ![image-20260206125806120]({{site.url}}/img/2026-02-06-Towards_Efficient_Constraint_Handling_in_Neural_Solvers_for_Routing_Problems/image-20260206125806120.png)
 
 
+### 审稿意见
 
-
+主要集中在：构造、精炼、联合微调的概念并不新鲜，贡献有限。
 
