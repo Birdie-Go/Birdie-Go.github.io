@@ -73,7 +73,7 @@ https://openreview.net/forum?id=lWdxX5s9T1
 **定义1（不对称感知嵌入）**。嵌入矩阵 $X \in \mathbb{R}^{n \times k}$ 被认为相对于特征矩阵 $D \in \mathbb{R}^{n \times n}$ 是不对称感知的，如果存在两个不同的线性变换 $W_1, W_2 \in \mathbb{R}^{k \times k}$ 使得：
 
 $$
-\left\mid X W_1 (X W_2)^\top - D\right\mid _F^2 \approx 0
+\mid X W_1 (X W_2)^\top - D\mid _F^2 \approx 0
 $$
 
 该定义形式化了嵌入以与注意力机制兼容的形式表示静态不对称性的能力。注意力计算成对交互为 $QK^\top$。我们采用类似的双线性形式 $X W\_1 (X W\_2)^\top$，其中 $W\_1 \neq W\_2$ 以产生反映原始距离矩阵不对称性的非对称交互矩阵。为构建此类嵌入，我们引入**截断SVD（Truncated SVD, TSVD）**来重建每个节点的相对坐标：
