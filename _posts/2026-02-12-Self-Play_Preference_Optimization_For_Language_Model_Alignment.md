@@ -2,7 +2,7 @@
 layout:     post
 title:      Self-Play Preference Optimization For Language Model Alignment
 subtitle:   自博弈偏好优化
-date:       2026/02/13
+date:       2026/02/12
 author:     Birdie
 header-img: img/post\_header.jpg
 catalog: true
